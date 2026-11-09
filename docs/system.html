@@ -4,383 +4,321 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Maps DM Outreach</title>
-<meta name="description" content="How the Maps DM Outreach kit turns a niche and a country into a DM-ready table of local businesses: pipeline, setup, costs and the four DM strategies.">
+<meta name="description" content="Maps DM Outreach in one page: how a niche and a country become local businesses ready to DM, what it costs, the four DM strategies and how to start.">
 <style>
 :root {
   --ground: #f5f4ed; --surface: #faf9f5; --surface-2: #f0eee6;
-  --ink: #141413; --ink-2: #3d3d3a; --text: #5e5d59; --muted: #87867f;
+  --ink: #141413; --ink-2: #3d3d3a; --text: #5e5d59; --muted: #75746d;
   --line: #e8e6dc; --line-2: #d1cfc5;
-  --accent: #c96442; --accent-text: #b05538; --accent-tint: rgba(201,100,66,0.08); --accent-border: rgba(201,100,66,0.25);
-  --on-accent: #faf9f5;
-  --cloud: #3b5f8a; --cloud-tint: rgba(59,95,138,0.08); --cloud-border: rgba(59,95,138,0.28);
+  --accent: #c96442; --accent-text: #b05538; --accent-tint: rgba(201,100,66,0.1); --accent-border: rgba(201,100,66,0.32);
   --display: "Tiempos Text", Georgia, serif;
   --sans: system-ui, -apple-system, "Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif;
   --mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
 }
 * { box-sizing: border-box; }
 html { -webkit-text-size-adjust: 100%; }
-body { margin: 0; background: var(--ground); color: var(--text); font: 17px/1.6 var(--sans); }
-main { max-width: 1080px; margin: 0 auto; padding: 0 24px 96px; }
-h1, h2, h3 { font-family: var(--display); font-weight: 500; color: var(--ink); margin: 0; }
-h1 { font-size: clamp(38px, 6vw, 64px); line-height: 1.05; letter-spacing: -1px; }
-h2 { font-size: clamp(28px, 4vw, 40px); line-height: 1.15; letter-spacing: -0.5px; margin-bottom: 12px; }
-h3 { font-size: 21px; line-height: 1.25; }
-p { margin: 0 0 12px; }
+body { margin: 0; background: var(--ground); color: var(--text); font: 16px/1.55 var(--sans); }
+main { max-width: 1120px; margin: 0 auto; padding: 0 24px 64px; }
+h1, h2, h3 { font-family: var(--display); font-weight: 500; color: var(--ink); margin: 0; text-wrap: balance; }
+h1 { font-size: clamp(34px, 4.6vw, 52px); line-height: 1.06; letter-spacing: -0.8px; }
+h2 { font-size: 28px; line-height: 1.2; margin-bottom: 14px; }
+h2 small { font: 15px var(--sans); color: var(--text); margin-left: 8px; }
+p { margin: 0 0 10px; }
+b { color: var(--ink-2); }
 a { color: var(--accent-text); }
-code, .mono { font-family: var(--mono); font-size: 0.86em; }
-code { background: var(--surface-2); border: 1px solid var(--line); border-radius: 6px; padding: 1px 6px; color: var(--ink-2); }
-.top { display: flex; align-items: center; gap: 8px; padding: 22px 0; font-family: var(--display); color: var(--ink); font-size: 19px; }
-.top span.kit { margin-left: auto; font-family: var(--sans); font-size: 13px; color: var(--text); }
-section { padding-top: 64px; }
-.lede { font-size: 20px; color: var(--ink-2); max-width: 720px; margin-top: 18px; }
-.cmd { margin: 26px 0 0; background: var(--ink); color: #f5f4ed; border-radius: 12px; padding: 16px 20px; font: 15px/1.5 var(--mono); overflow-x: auto; white-space: pre; }
-.cmd .dim { color: #a8a69c; }
-.section-sub { max-width: 720px; color: var(--text); }
+code { font-family: var(--mono); font-size: 0.86em; background: var(--surface-2); border: 1px solid var(--line); border-radius: 6px; padding: 1px 5px; color: var(--ink-2); }
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; }
+.top { display: flex; align-items: center; gap: 8px; padding: 20px 0; font-family: var(--display); color: var(--ink); font-size: 18px; }
+.top .kit { margin-left: auto; font: 14px var(--sans); color: var(--text); }
+section { margin-top: 64px; }
+figure { margin: 0; }
 
-/* Pipeline */
-.flow { list-style: none; margin: 28px 0 0; padding: 0; display: grid; grid-template-columns: repeat(6, 1fr); gap: 0; position: relative; }
-.flow li { position: relative; padding: 0 10px; }
-.flow li::before { content: ""; position: absolute; top: 21px; left: 0; right: 0; height: 2px; background: var(--line-2); }
-.flow li:first-child::before { left: 50%; }
-.flow li:last-child::before { right: 50%; }
-.node { position: relative; width: 44px; height: 44px; margin: 0 auto 12px; border-radius: 50%; display: grid; place-items: center; font: 600 15px var(--sans); background: var(--surface); border: 2px solid var(--line-2); color: var(--ink); }
-.flow li.cloud .node { border-color: var(--cloud); color: var(--cloud); background: #f2f4f7; }
-.flow li.paid .node { border-color: var(--accent); color: var(--accent-text); }
-.flow h3 { font-family: var(--sans); font-size: 15px; font-weight: 600; text-align: center; color: var(--ink); }
-.flow p { font-size: 14px; line-height: 1.45; text-align: center; margin: 6px 0 0; }
-.flow .where { display: block; margin-top: 8px; text-align: center; font-size: 12px; font-weight: 600; letter-spacing: 0.02em; }
-.where.local { color: var(--text); }
-.where.cloud { color: var(--cloud); }
-.where.apify { color: var(--accent-text); }
-.legend { display: flex; gap: 18px; flex-wrap: wrap; margin-top: 18px; font-size: 13px; }
-.legend i { display: inline-block; width: 12px; height: 12px; border-radius: 50%; border: 2px solid; vertical-align: -1px; margin-right: 6px; }
+/* Hero */
+.hero { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 40px; align-items: center; padding-top: 16px; }
+.hero h1 { font-size: clamp(34px, 4vw, 46px); }
+.lede { font-size: 18px; color: var(--ink-2); margin-top: 16px; }
+.cta { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 16px; margin-top: 22px; }
+.btn { display: inline-block; background: var(--ink); color: #faf9f5; text-decoration: none; font-weight: 600; padding: 11px 18px; border-radius: 10px; }
+.btn:focus-visible, summary:focus-visible, .presets button:focus-visible, .calc input:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.cta span { font-size: 15px; }
 
-/* Funnel */
-.funnel { margin-top: 30px; background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 22px 24px; }
-.funnel h3 { margin-bottom: 4px; }
-.funnel .meta { font-size: 14px; margin-bottom: 16px; }
-.bar { display: grid; grid-template-columns: 220px 1fr 64px; align-items: center; gap: 12px; padding: 5px 0; font-size: 15px; }
-.bar .label { color: var(--ink-2); }
-.bar .track { height: 14px; background: var(--surface-2); border-radius: 999px; overflow: hidden; }
-.bar .track, .bar .fill { display: block; }
-.bar .fill { height: 100%; background: var(--line-2); border-radius: 999px; }
-.bar.key .fill { background: var(--accent); }
-.bar .num { text-align: right; font-variant-numeric: tabular-nums; color: var(--ink); font-weight: 600; }
-.why { margin-top: 14px; font-size: 14px; }
-.why summary { cursor: pointer; color: var(--accent-text); font-weight: 600; }
-.why ul { margin: 10px 0 0; padding-left: 20px; }
+.facts { list-style: none; margin: 24px 0 0; padding: 0; font-size: 15px; }
+.facts li { padding: 9px 0; border-top: 1px solid var(--line-2); }
+.facts b { color: var(--ink); }
+.honest { font-size: 14px; color: var(--ink-2); background: var(--surface-2); border-radius: 10px; padding: 10px 14px; margin: 14px 0 0; }
+/* Mini table (illustration of the app) */
+.mini { padding: 0; overflow: hidden; box-shadow: 0 18px 40px -28px rgba(20,20,19,0.45); }
+.mini .bar { display: flex; justify-content: space-between; gap: 10px; padding: 10px 14px; border-bottom: 1px solid var(--line); font-size: 13px; color: var(--muted); background: #fff; }
+.mini .bar b { color: var(--ink); }
+.row { display: grid; grid-template-columns: 1fr auto; gap: 4px 12px; padding: 12px 14px; border-bottom: 1px solid var(--line); background: #fff; }
+.row:last-child { border-bottom: 0; }
+.row .biz { font-weight: 600; color: var(--ink); font-size: 15px; }
+.row .meta { font-size: 13px; color: var(--muted); }
+.row .msg { grid-column: 1 / -1; font-size: 14px; color: var(--ink); background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 7px 10px; display: flex; justify-content: space-between; gap: 10px; align-items: center; }
+.row .copy { font-size: 12px; font-weight: 600; color: var(--ink-2); border: 1px solid var(--line-2); border-radius: 6px; padding: 2px 8px; white-space: nowrap; background: #fff; }
+.row .ch { font-size: 12px; font-weight: 600; color: var(--ink-2); border: 1px solid var(--line-2); border-radius: 999px; padding: 1px 8px; align-self: start; }
+.mini + figcaption { font-size: 13px; margin-top: 8px; }
+mark { background: var(--accent-tint); color: var(--accent-text); border-radius: 3px; padding: 0 1px; }
 
-/* Setup */
-.steps { counter-reset: s; list-style: none; padding: 0; margin: 24px 0 0; display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
-.steps li { counter-increment: s; background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 18px 18px 16px 62px; position: relative; }
-.steps li::before { content: counter(s); position: absolute; left: 18px; top: 16px; width: 30px; height: 30px; border-radius: 50%; background: var(--accent-tint); border: 1px solid var(--accent-border); color: var(--accent-text); font-weight: 600; display: grid; place-items: center; font-size: 14px; }
-.steps h3 { font-family: var(--sans); font-size: 16px; font-weight: 600; margin-bottom: 4px; }
-.steps p { font-size: 15px; margin: 0; }
-.who { display: inline-block; font-size: 12px; font-weight: 600; padding: 1px 9px; border-radius: 999px; margin-left: 6px; vertical-align: 2px; }
-.who.you { background: var(--accent-tint); border: 1px solid var(--accent-border); color: var(--accent-text); }
-.who.claude { background: var(--surface-2); border: 1px solid var(--line-2); color: var(--ink-2); }
-
-/* Costs */
-.costs { display: grid; grid-template-columns: 1.15fr 1fr; gap: 18px; margin-top: 24px; align-items: start; }
-table { width: 100%; border-collapse: collapse; background: var(--surface); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; font-size: 15px; }
-th, td { text-align: left; padding: 11px 14px; border-bottom: 1px solid var(--line); vertical-align: top; }
-th { font-size: 13px; color: var(--ink-2); background: var(--surface-2); font-weight: 600; }
+/* Flow + cost */
+.flow { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, 1fr); }
+.flow .bar { display: block; height: 6px; border-radius: 999px; background: var(--surface-2); margin: 8px 0 10px; overflow: hidden; } .flow .bar i { display: block; height: 100%; background: var(--ink-2); border-radius: 999px; }
+.flow li { position: relative; padding: 16px 16px 14px; border: 1px solid var(--line); background: var(--surface); display: flex; flex-direction: column; }
+.flow li:first-child { border-radius: 14px 0 0 14px; }
+.flow li:last-child { border-radius: 0 14px 14px 0; }
+.flow li + li { border-left: 0; }
+.flow li + li::before { content: ""; position: absolute; left: -7px; top: 50%; width: 12px; height: 12px; background: inherit; border-top: 1px solid var(--line-2); border-right: 1px solid var(--line-2); transform: translateY(-50%) rotate(45deg); }
+.flow .n { font-family: var(--display); font-size: 40px; line-height: 1; color: var(--ink); font-variant-numeric: tabular-nums; }
+.flow .what { font-weight: 600; color: var(--ink); margin-top: 10px; }
+.flow .opt { font-weight: 400; color: var(--muted); font-size: 13px; }
+.flow p { font-size: 14px; margin: 2px 0 12px; }
+.flow .cost { margin-top: auto; font-size: 13px; color: var(--muted); border-top: 1px solid var(--line); padding-top: 8px; }
+.flow .cost b { color: var(--ink); }
+.money { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 14px; }
+.money > div { padding: 14px 18px; }
+.money > div > b { display: block; font: 500 30px/1.15 var(--display); color: var(--ink); margin-bottom: 4px; } .money span b { color: var(--ink); }
+.money span { font-size: 14px; }
+details { margin-top: 12px; }
+summary { cursor: pointer; font-weight: 600; color: var(--ink); font-size: 15px; width: fit-content; list-style: none; border: 1px solid var(--line-2); background: var(--surface); border-radius: 10px; padding: 8px 14px; }
+summary::-webkit-details-marker { display: none; }
+summary::after { content: "  ▾"; color: var(--muted); }
+details[open] summary::after { content: "  ▴"; }
+.more { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 12px; }
+table { width: 100%; border-collapse: collapse; font-size: 14px; }
+th, td { text-align: left; padding: 8px 14px; border-bottom: 1px solid var(--line); }
+th { font-size: 13px; color: var(--muted); font-weight: 600; }
 tr:last-child td { border-bottom: 0; }
-td.n { font-variant-numeric: tabular-nums; white-space: nowrap; color: var(--ink); }
-.calc { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 18px 20px; }
-.calc h3 { margin-bottom: 12px; }
-.calc label { display: block; font-size: 14px; font-weight: 600; color: var(--ink-2); margin: 12px 0 6px; }
-.presets { display: flex; flex-wrap: wrap; gap: 8px; }
-.presets button { font: 14px var(--sans); border: 1px solid var(--line-2); background: var(--ground); color: var(--ink-2); border-radius: 999px; padding: 5px 12px; cursor: pointer; }
-.presets button[aria-pressed="true"] { background: var(--accent-tint); border-color: var(--accent-border); color: var(--accent-text); font-weight: 600; }
-.presets button:focus-visible, .calc input:focus-visible, .why summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
-.calc input[type=number] { width: 120px; font: 16px var(--sans); padding: 6px 10px; border: 1px solid var(--line-2); border-radius: 8px; background: #fff; color: var(--ink); }
-.result { margin-top: 16px; border-top: 1px solid var(--line); padding-top: 14px; display: grid; grid-template-columns: 1fr auto; gap: 6px 12px; font-size: 15px; }
-.result .n { font-variant-numeric: tabular-nums; color: var(--ink); text-align: right; }
-.result .total { font-weight: 600; color: var(--ink); }
-.note { font-size: 13px; color: var(--text); margin-top: 12px; }
-.free { margin-top: 18px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
-.free div { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 16px 18px; }
-.free b { display: block; font-family: var(--display); font-weight: 500; font-size: 26px; color: var(--ink); }
-.free span { font-size: 14px; }
+td.n { white-space: nowrap; color: var(--ink); font-variant-numeric: tabular-nums; }
+.calc { padding: 14px 18px; }
+.presets { display: flex; flex-wrap: wrap; gap: 6px; }
+.presets button { font: 14px var(--sans); border: 1px solid var(--line-2); background: var(--ground); color: var(--ink-2); border-radius: 999px; padding: 5px 12px; cursor: pointer; min-height: 34px; }
+.presets button[aria-pressed="true"] { background: var(--ink); border-color: var(--ink); color: #faf9f5; }
+.calc label { display: flex; align-items: center; gap: 8px; font-size: 14px; margin-top: 10px; }
+.calc input { width: 100px; font: 15px var(--sans); padding: 5px 8px; border: 1px solid var(--line-2); border-radius: 8px; background: #fff; color: var(--ink); }
+.result { margin-top: 10px; display: grid; grid-template-columns: 1fr auto; gap: 2px 12px; font-size: 14px; }
+.result .r { text-align: right; color: var(--ink); font-variant-numeric: tabular-nums; }
+.result .t { font-weight: 600; color: var(--ink); }
+.small { font-size: 13px; margin-top: 8px; }
 
 /* Strategies */
-.strats { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-top: 24px; }
-.strat { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 20px; display: flex; flex-direction: column; }
-.strat .tag { font-size: 12px; font-weight: 600; color: var(--muted); letter-spacing: 0.04em; text-transform: uppercase; }
-.strat h3 { margin: 4px 0 8px; }
-.strat p { font-size: 15px; }
-.dm { margin: 6px 0 12px; align-self: flex-start; max-width: 100%; background: #fff; border: 1px solid var(--line); border-radius: 18px 18px 18px 4px; padding: 12px 15px; font-size: 15px; line-height: 1.5; color: var(--ink); white-space: pre-line; box-shadow: 0 1px 0 var(--line); }
-.dm mark { background: var(--accent-tint); color: var(--accent-text); border-radius: 4px; padding: 0 3px; }
-.needs { margin-top: auto; font-size: 13px; color: var(--ink-2); border-top: 1px solid var(--line); padding-top: 10px; }
-.pill { display: inline-block; font-size: 12px; padding: 1px 9px; border-radius: 999px; background: var(--accent-tint); border: 1px solid var(--accent-border); color: var(--accent-text); margin-right: 4px; }
+.strats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+.strat { padding: 14px; display: flex; flex-direction: column; } .strat .dm { align-self: stretch; }
+.strat h3 { font: 600 15px var(--sans); color: var(--ink); }
+.strat .ch { font-size: 13px; color: var(--muted); margin-bottom: 10px; }
+.dm { background: #fff; border: 1px solid var(--line); border-radius: 16px 16px 16px 4px; padding: 10px 12px; font-size: 14px; line-height: 1.5; color: var(--ink); margin-bottom: 10px; align-self: start; }
+.strat p { font-size: 14px; margin: 0; }
 
-/* Daily */
-.day { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; margin-top: 24px; align-items: start; }
-.day ol { margin: 0; padding-left: 22px; }
-.day li { margin-bottom: 10px; }
-.limits { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 4px; }
-.limits div { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 10px 14px; min-width: 110px; }
-.limits b { display: block; font-size: 24px; font-family: var(--display); font-weight: 500; color: var(--ink); }
-figure { margin: 24px 0 0; }
-figure img { width: 100%; height: auto; display: block; border: 1px solid var(--line-2); border-radius: 12px; background: #fff; }
-figcaption { font-size: 14px; margin-top: 8px; }
-.shots { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
-.never { margin-top: 24px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
-.never div { border-top: 1px solid var(--line-2); padding-top: 12px; font-size: 15px; }
-.never b { color: var(--ink); display: block; }
-footer { margin-top: 72px; padding-top: 20px; border-top: 1px solid var(--line); font-size: 14px; }
+/* Start */
+.start { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.start > div { padding: 18px 20px; }
+.start h3 { font: 600 16px var(--sans); color: var(--ink); margin-bottom: 10px; }
+.start ol { margin: 0; padding-left: 20px; }
+.start li { margin-bottom: 6px; font-size: 15px; }
+.you { color: var(--ink); font-weight: 700; }
+.caps { display: flex; flex-wrap: wrap; gap: 6px 18px; margin-top: 12px; font-size: 14px; }
+.caps b { font: 500 22px var(--display); color: var(--ink); margin-right: 4px; }
+.shots { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 16px; }
+.shots img { aspect-ratio: 1440 / 760; object-fit: cover; object-position: top left; width: 100%; display: block; border: 1px solid var(--line-2); border-radius: 10px; background: #fff; }
+.shots figcaption { font-size: 13px; margin-top: 6px; }
 
-@media (max-width: 900px) {
-  .flow { grid-template-columns: 1fr; gap: 14px; }
-  .flow li { display: grid; grid-template-columns: 44px 1fr; column-gap: 14px; padding: 0; }
-  .flow li::before { top: 0; bottom: -14px; left: 21px; right: auto; width: 2px; height: auto; }
-  .flow li:first-child::before { left: 21px; top: 22px; }
-  .flow li:last-child::before { display: none; }
-  .node { margin: 0; grid-row: span 3; }
-  .flow h3, .flow p, .flow .where { text-align: left; }
-  .flow .where { margin-top: 4px; }
-  .costs, .day, .shots { grid-template-columns: 1fr; }
-  .steps, .strats { grid-template-columns: 1fr; }
-  .free, .never { grid-template-columns: 1fr; }
-  .bar { grid-template-columns: 1fr 52px; }
-  .bar .track { grid-column: 1 / -1; grid-row: 2; }
+@media (max-width: 920px) {
+  .hero, .start, .more { grid-template-columns: 1fr; }
+  .flow { grid-template-columns: 1fr; }
+  .flow li, .flow li:first-child, .flow li:last-child { border-radius: 0; }
+  .flow li:first-child { border-radius: 14px 14px 0 0; }
+  .flow li:last-child { border-radius: 0 0 14px 14px; }
+  .flow li + li { border-left: 1px solid var(--line); border-top: 0; }
+
+  .flow li + li::before { left: 30px; top: -7px; transform: rotate(135deg); }
+  .flow li { display: grid; grid-template-columns: 74px 1fr; column-gap: 12px; padding: 12px 14px; }
+  .flow .n { grid-row: span 4; font-size: 30px; align-self: start; }
+  .flow .what { margin-top: 0; }
+  .flow p { margin-bottom: 6px; }
+  .flow .cost { border-top: 0; padding-top: 0; }
+  .strats { grid-template-columns: 1fr 1fr; }
 }
-.costs > *, .day > *, .shots > *, .strats > *, .steps > * { min-width: 0; }
-@media (max-width: 480px) {
-  main { padding: 0 16px 64px; }
+.hero > *, .strats > *, .start > *, .more > *, .money > * { min-width: 0; }
+@media (max-width: 560px) {
+  main { padding: 0 16px 48px; }
+  .top .kit { display: none; }
+  .strats { grid-template-columns: 1fr; }
+  h2 small { display: block; margin: 4px 0 0; }
+  .money { gap: 8px; grid-template-columns: 1fr; }
+  .money > div { padding: 12px; }
+  .money > div > b { font-size: 26px; }
+  .money span { font-size: 13px; line-height: 1.4; display: block; }
+  th, td { padding: 8px 10px; }
   td.n { white-space: normal; }
-  th, td { padding: 9px 10px; }
-  body { font-size: 16px; }
-  .lede { font-size: 18px; }
-  .cmd { font-size: 13px; }
-}
-@media print {
-  body { background: #fff; }
-  .presets, .calc input { display: none; }
-  section { break-inside: avoid-page; padding-top: 32px; }
+  section { margin-top: 48px; }
+  .mini .bar span:last-child, .row .copy { display: none; }
+  .flow li { grid-template-columns: 56px 1fr; }
+  .flow .n { font-size: 26px; }
+  .shots { gap: 8px; } .shots figcaption { font-size: 12px; }
 }
 </style>
 </head>
 <body>
 <main>
   <header class="top">
-    <svg viewBox="0 0 24 24" width="19" height="19" fill="#c96442" aria-hidden="true"><path d="M12 2 L13.4 10.6 L22 12 L13.4 13.4 L12 22 L10.6 13.4 L2 12 L10.6 10.6 Z"/></svg>
+    <svg viewBox="0 0 24 24" width="18" height="18" fill="#c96442" aria-hidden="true"><path d="M12 2 L13.4 10.6 L22 12 L13.4 13.4 L12 22 L10.6 13.4 L2 12 L10.6 10.6 Z"/></svg>
     Automatable
     <span class="kit">Community kit · Maps DM Outreach</span>
   </header>
 
-  <h1>A niche and a country in.<br>A DM-ready list of local businesses out.</h1>
-  <p class="lede">The kit searches Google Maps postcode by postcode, reads every business website for its Instagram and Facebook, drops dead accounts, and puts the rest into a local outreach table. You send each DM by hand; the table tells you who is next, copies the message and tracks which strategy gets replies.</p>
-  <div class="cmd"><span class="dim">$</span> python run.py --country GB --niche roofer --region "West Yorkshire"</div>
+  <div class="hero">
+    <div>
+      <h1>Type a niche and a country. Get local businesses ready to DM.</h1>
+      <p class="lede">The kit finds businesses on Google Maps, looks up their Instagram and Facebook, and gives you a table with a message ready to copy for each one. You send every DM yourself.</p>
+      <div class="cta">
+        <a class="btn" href="https://github.com/luka-commits/maps-dm-outreach">Download on GitHub</a>
+        <span>Then open the folder in Claude Code and say <b>“set up”</b>.</span>
+      </div>
+      <ul class="facts">
+        <li><b>You need</b> Claude Code and a free <b>Modal</b> account (a rented cloud computer that runs the Google search). A free <b>Apify</b> account is optional.</li>
+        <li><b>Countries</b> US, UK, Canada, Australia, Ireland and Germany, with any niche. Big countries run one state or county at a time.</li>
+        <li><b>Nothing is sent for you.</b> You send by hand under daily limits. The lead list is a file on your laptop.</li>
+      </ul>
+    </div>
+    <div>
+      <figure>
+        <div class="mini card" role="img" aria-label="Illustration of the outreach table: three businesses, each with its town, channel and a ready message with a copy button.">
+          <div class="bar"><span><b>Outreach table</b> · today's batch</span><span>Instagram 4/30 · Facebook 2/15</span></div>
+          <div class="row"><span class="biz">Northside Roofing</span><span class="ch">Facebook</span><span class="meta">Leeds · 4.8 ★ · 61 reviews</span><span></span><span class="msg"><span>Hi, do you also cover <mark>Headingley</mark>?</span><span class="copy">Copy</span></span></div>
+          <div class="row"><span class="biz">Calder Valley Roofers</span><span class="ch">Instagram</span><span class="meta">Halifax · owner: Sam</span><span></span><span class="msg"><span>Hey <mark>Sam</mark>, <mark>loved the chapel roof in your last post</mark>. Want the two things I'd change on your Google listing?</span><span class="copy">Copy</span></span></div>
+          <div class="row"><span class="biz">Aire Slate &amp; Tile</span><span class="ch">Instagram</span><span class="meta">Bradford · 4.6 ★ · 23 reviews</span><span></span><span class="msg"><span>Hi, do you also cover <mark>Shipley</mark>?</span><span class="copy">Copy</span></span></div>
+        </div>
+        <figcaption>Simplified view of the table, invented businesses. Highlighted parts are filled in per business.</figcaption>
+      </figure>
+    </div>
+  </div>
 
-  <section id="pipeline" aria-labelledby="h-pipeline">
-    <h2 id="h-pipeline">What happens after you press enter</h2>
-    <p class="section-sub">Six steps, each resumable. A stopped run continues with <code>--from &lt;step&gt;</code> and never pays for a finished cell twice.</p>
+  <section aria-labelledby="h-how">
+    <h2 id="h-how">What happens, and what it costs <small>a real test run: roofers in 20 postcodes of West Yorkshire</small></h2>
     <ol class="flow">
-      <li class="cloud"><div class="node">1</div><h3>Scrape</h3><p>One Google Maps search per postcode cell, 12 at a time.</p><span class="where cloud">Modal · paid</span></li>
-      <li class="cloud"><div class="node">2</div><h3>Fetch</h3><p>Cell results download to <code>data/runs/</code>.</p><span class="where cloud">Modal volume</span></li>
-      <li><div class="node">3</div><h3>Collect</h3><p>One list, duplicates from overlapping cells removed.</p><span class="where local">your machine</span></li>
-      <li><div class="node">4</div><h3>Enrich</h3><p>Each website is read for Instagram, Facebook and the owner's first name.</p><span class="where local">your machine</span></li>
-      <li><div class="node">5</div><h3>Import</h3><p>Niche, chains, size and channel filters; neighbour town for the message.</p><span class="where local">your machine</span></li>
-      <li class="paid"><div class="node">6</div><h3>Activity</h3><p>Accounts silent for six months are marked dead. Optional.</p><span class="where apify">Apify · paid</span></li>
+      <li><span class="n">268</span><span class="what">Businesses found</span><span class="bar"><i style="width:100%"></i></span><p>Google Maps, searched postcode by postcode. Measured on one county, a single county-wide search found only about a tenth of these.</p><span class="cost">Modal · <b>$0.07</b> · 3 min</span></li>
+      <li><span class="n">197</span><span class="what">Have a website</span><span class="bar"><i style="width:73%"></i></span><p>Each website is read for Instagram, Facebook and the owner's first name.</p><span class="cost">your laptop · <b>free</b></span></li>
+      <li><span class="n">44</span><span class="what">Leads</span><span class="bar"><i style="width:16%"></i></span><p>Your niche, at least 5 Google reviews, and an Instagram or Facebook.</p><span class="cost">your laptop · <b>free</b></span></li>
+      <li><span class="n">29</span><span class="what">Ready to DM</span><span class="bar"><i style="width:11%"></i></span><p>Accounts silent for six months are dropped (optional check). Each lead gets a ready message.</p><span class="cost">Apify · <b>$0.19</b></span></li>
     </ol>
-    <div class="legend" aria-hidden="true">
-      <span><i style="border-color:var(--cloud)"></i>runs in the cloud</span>
-      <span><i style="border-color:var(--accent)"></i>paid per profile</span>
-      <span><i style="border-color:var(--line-2)"></i>free, local</span>
+    <div class="money">
+      <div class="card lead"><b>$0.26</b><span>this test run, 20 postcodes, everything included</span></div>
+      <div class="card"><b>under $3</b><span>a whole county (80 to 300 postcodes): West Yorkshire about $0.75, Greater London about $2.50</span></div>
+      <div class="card"><b>$0 to start</b><span>free plans: Modal $30 a month, Apify $5. <b>Plus your Claude Code plan.</b></span></div>
     </div>
-
-    <div class="funnel" id="funnel">
-      <h3>One real probe run</h3>
-      <p class="meta">GB, “roofer”, 20 postcode cells in West Yorkshire, 9 November 2026. Total cost <b id="probe-cost">$0.26</b>.</p>
-      <div id="bars"></div>
-      <details class="why">
-        <summary>Why so many businesses drop out</summary>
-        <ul>
-          <li><b>Searching by postcode</b> finds about ten times more businesses than one search for the whole county, because Google stops at about 60 results per search. Neighbouring cells overlap, so hits are deduplicated.</li>
-          <li><b>Too small</b> means no website or fewer reviews than <code>import.min_reviews</code> (default 5). Both are settings.</li>
-          <li><b>No DM channel</b> means neither Instagram nor Facebook was linked on the website. Those businesses cannot be messaged with this kit.</li>
-          <li><b>Not the niche</b> catches suppliers and neighbouring trades that Google returns for the search.</li>
-        </ul>
-      </details>
-    </div>
-  </section>
-
-  <section id="setup" aria-labelledby="h-setup">
-    <h2 id="h-setup">Setup, guided by Claude Code</h2>
-    <p class="section-sub">Open the folder in Claude Code and say “set up”. It runs <code>setup/check.py</code> after every step and only stops where you have to click or paste something yourself. About 20 minutes.</p>
-    <ol class="steps">
-      <li><h3>Python environment <span class="who claude">Claude</span></h3><p>Creates <code>.venv</code> and installs two packages. Needs Python 3.10+.</p></li>
-      <li><h3>App <span class="who claude">Claude</span></h3><p><code>npm install</code> in <code>app/</code>. Needs Node 22.13+, which ships SQLite.</p></li>
-      <li><h3>Modal account <span class="who you">you</span></h3><p>Free sign-up at modal.com, then <code>modal setup</code> logs you in through the browser. Runs the Maps scraper.</p></li>
-      <li><h3>Apify token <span class="who you">you</span></h3><p>Optional. Free account at apify.com; paste the API token into <code>.env</code> yourself. Powers the activity check and opener posts.</p></li>
-      <li><h3>Your settings <span class="who claude">Claude asks</span></h3><p>Your name, timezone, what you offer, and which two DM strategies to test first. Saved in <code>outreach.config.json</code>.</p></li>
-      <li><h3>Probe run <span class="who claude">Claude</span></h3><p>20 postcode cells in a region you pick, about ten cents. Then the table opens at <code>localhost:4319</code>.</p></li>
-    </ol>
-  </section>
-
-  <section id="costs" aria-labelledby="h-costs">
-    <h2 id="h-costs">What it costs</h2>
-    <p class="section-sub">You pay two providers per use, from their free monthly allowance first. Everything else runs on your machine. Rates measured on the probe run; the scraper prints its estimate before it starts.</p>
-    <div class="costs">
-      <table>
-        <thead><tr><th>Item</th><th>Rate</th><th>Billed by</th></tr></thead>
-        <tbody>
-          <tr><td>Google Maps scrape</td><td class="n">$0.0036 per postcode cell</td><td>Modal</td></tr>
-          <tr><td>Activity check, Instagram</td><td class="n">$0.0022 per profile</td><td>Apify</td></tr>
-          <tr><td>Activity check, Facebook</td><td class="n">$0.0039 per page</td><td>Apify</td></tr>
-          <tr><td>Instagram posts for openers</td><td class="n">about $0.003 per profile</td><td>Apify</td></tr>
-          <tr><td>Website reading, import, outreach table</td><td class="n">free</td><td>your machine</td></tr>
-          <tr><td>Claude Code for setup and openers</td><td class="n">your own plan</td><td>Anthropic</td></tr>
-        </tbody>
-      </table>
-      <div class="calc" aria-labelledby="h-calc">
-        <h3 id="h-calc">Estimate a run</h3>
-        <label id="l-area">Area</label>
-        <div class="presets" role="group" aria-labelledby="l-area" id="presets"></div>
-        <label for="cells">Postcode cells</label>
-        <input id="cells" type="number" min="1" max="45000" step="1" value="83">
-        <label for="profiles">Social profiles to check <span style="font-weight:400">(about one per imported lead)</span></label>
-        <input id="profiles" type="number" min="0" max="100000" step="1" value="150">
-        <div class="result" aria-live="polite">
-          <span>Scrape on Modal</span><span class="n" id="r-scrape"></span>
-          <span>Activity check on Apify</span><span class="n" id="r-act"></span>
-          <span class="total">Total</span><span class="n total" id="r-total"></span>
-          <span>Scrape time</span><span class="n" id="r-time"></span>
+    <details>
+      <summary>Rates and a calculator for your area</summary>
+      <div class="more">
+        <div class="card">
+          <table>
+            <thead><tr><th>What</th><th>Price</th><th>Paid to</th></tr></thead>
+            <tbody>
+              <tr><td>Maps search</td><td class="n">$0.0036 per postcode</td><td>Modal</td></tr>
+              <tr><td>Activity check</td><td class="n">$0.002 to $0.004 per profile</td><td>Apify</td></tr>
+              <tr><td>Posts for openers</td><td class="n">~$0.003 per profile</td><td>Apify</td></tr>
+              <tr><td>Everything else</td><td class="n">free</td><td>your laptop</td></tr>
+            </tbody>
+          </table>
+          <p class="small" style="padding:0 14px 6px">Free allowances are the providers' standard monthly plans. Prices as of 9 November 2026.</p>
         </div>
-        <p class="note">The profile count is your own guess: the probe imported 2.2 leads per cell, but cells overlap, so larger areas yield fewer per cell. The activity cost uses the probe's mix of Instagram and Facebook.</p>
+        <div class="card calc">
+          <div class="presets" role="group" aria-label="Example areas" id="presets"></div>
+          <label for="cells">Postcodes <input id="cells" type="number" min="1" max="45000" step="1" value="83"></label>
+          <div class="result" aria-live="polite">
+            <span>Maps search</span><span class="r" id="r-scrape"></span>
+            <span>Activity check (~<span id="r-prof"></span> profiles)</span><span class="r" id="r-act"></span>
+            <span class="t">Total</span><span class="r t" id="r-total"></span>
+            <span>Search time</span><span class="r" id="r-time"></span>
+          </div>
+        </div>
       </div>
-    </div>
-    <div class="free">
-      <div><b>$30</b><span>Modal Starter compute included every month, about 8,000 postcode cells</span></div>
-      <div><b>$5</b><span>Apify Free usage included every month, about 1,300 profile checks</span></div>
-      <div><b>~$150</b><span>the whole US (41,000 cells), which is why large countries run per state</span></div>
-    </div>
-    <p class="note">Provider rates as of 9 November 2026; check modal.com/pricing and apify.com/pricing before large runs.</p>
+    </details>
   </section>
 
-  <section id="strategies" aria-labelledby="h-strat">
-    <h2 id="h-strat">Four DM strategies to split-test</h2>
-    <p class="section-sub">Activate two. The table assigns each lead one of them, balanced, and the Analytics page compares reply rates per strategy and channel. Highlighted parts are filled in per lead. Examples use an invented business.</p>
+  <section aria-labelledby="h-strat">
+    <h2 id="h-strat">Four DM strategies <small>pick two; the table splits your leads and counts the replies</small></h2>
+    <p class="sub">An <b>opener</b> is one line about the business's latest Instagram post. Claude drafts it, you check it. Highlighted parts are filled in per business.</p>
     <div class="strats">
-      <article class="strat">
-        <span class="tag">Strategy 1 · no opener</span>
-        <h3>Area question</h3>
+      <article class="strat card">
+        <h3>1 · Area question</h3><span class="ch">every channel</span>
         <div class="dm">Hi, do you also cover <mark>Headingley</mark>?</div>
-        <p>A question any owner answers in two seconds, because it sounds like a job. The reply opens the conversation; you make the offer in message two.</p>
-        <div class="needs"><span class="pill">all channels</span> needs a neighbour town, computed on import</div>
+        <p>A short, easy question to answer. Your offer comes in message two.</p>
       </article>
-      <article class="strat">
-        <span class="tag">Strategy 2 · opener</span>
-        <h3>Personal opener + done-for-you offer</h3>
-        <div class="dm">Hey <mark>Sam</mark>, <mark>didn't know you also do heritage slate repairs, the chapel roof in your last post 😮</mark>
-
-I checked your visibility in <mark>Leeds and Headingley</mark> and optimised your Google profile so you can get past <mark>Northside Roofing</mark>. You only need to copy it. My promise: <mark>ten new jobs in 60 days, free for you</mark>. Can I send you the profile?</div>
-        <p>The work is already done and costs nothing to accept. The competitor is the business with the most reviews in the same town.</p>
-        <div class="needs"><span class="pill">Instagram</span> needs an opener from their posts</div>
+      <article class="strat card">
+        <h3>2 · Work done upfront</h3><span class="ch">Instagram, with opener</span>
+        <div class="dm">Hey <mark>Sam</mark>, <mark>loved the chapel roof in your last post</mark>. I've already improved your Google profile so you can overtake <mark>Northside Roofing</mark>. Want it?</div>
+        <p>You do a piece of your own service first, here a better Google profile. The competitor named is the top-rated one in their town.</p>
       </article>
-      <article class="strat">
-        <span class="tag">Strategy 3 · opener</span>
-        <h3>Post comment + permission question</h3>
-        <div class="dm"><mark>that chapel roof on your last post came out lovely 😍</mark> had a look at your google listing while i was there, want the two things i'd change?</div>
-        <p>The first message spends nothing. The finding is message two, sent only to people who said yes.</p>
-        <div class="needs"><span class="pill">Instagram</span> needs an opener</div>
+      <article class="strat card">
+        <h3>3 · Ask first</h3><span class="ch">Instagram, with opener</span>
+        <div class="dm"><mark>that chapel roof came out lovely</mark> had a look at your google listing, want the two things i'd change?</div>
+        <p>The tips go only to people who say yes.</p>
       </article>
-      <article class="strat">
-        <span class="tag">Strategy 4 · opener</span>
-        <h3>Post comment + upfront audit offer</h3>
-        <div class="dm">Hey <mark>Sam</mark>, <mark>that chapel roof on your last post came out lovely 😍</mark> i help <mark>roofers</mark> get found online. cool if i send you your google profile, website and seo fixes upfront?</div>
-        <p>Same opening as strategy 3, a different ask. Run 3 against 4 to learn whether curiosity or free work gets more replies.</p>
-        <div class="needs"><span class="pill">Instagram</span> needs an opener</div>
+      <article class="strat card">
+        <h3>4 · Bigger free offer</h3><span class="ch">Instagram, with opener</span>
+        <div class="dm"><mark>that chapel roof came out lovely</mark> i help <mark>roofers</mark> get found online. cool if i send you some fixes upfront?</div>
+        <p>Like 3, but offers more. Shows whether curiosity or free work wins.</p>
       </article>
     </div>
-    <p class="note">The opener is the only line a person writes. Claude drafts it from their last six posts with the <code>dm-opener</code> skill, and you read every one before sending. Rules for good openers: <code>strategies/README.md</code>.</p>
+    <p class="honest"><b>No reply rates yet.</b> The kit measures yours per strategy; below about 30 sends each, a difference is mostly chance. Your service and promise go in during setup. Examples are shortened; full templates are in <code>strategies/</code>.</p>
   </section>
 
-  <section id="daily" aria-labelledby="h-daily">
-    <h2 id="h-daily">A day of outreach</h2>
-    <div class="day">
-      <div>
+  <section aria-labelledby="h-start">
+    <h2 id="h-start">Start</h2>
+    <div class="start">
+      <div class="card">
+        <h3>Setup, about 20 minutes</h3>
         <ol>
-          <li><b>Pull a batch</b> of 10 to 20 leads. Branches that share one profile get one DM.</li>
-          <li><b>Write openers</b> for leads whose strategy needs one, or switch them to the area question.</li>
-          <li><b>Work every channel</b> per lead the same day: click opens the profile and copies the message, you paste and send, then tick.</li>
-          <li><b>Set stages</b> as replies arrive: Contacted, Replied, Asset sent, Meeting, Not interested.</li>
+          <li>Download the repo, open it in Claude Code, say <b>“set up”</b>.</li>
+          <li>Claude installs the rest and checks each step.</li>
+          <li><span class="you">You:</span> create a free Modal account and log in once.</li>
+          <li><span class="you">You, optional:</span> paste an Apify key.</li>
+          <li>Claude asks your name, offer and two strategies, then runs a test for under $0.30.</li>
         </ol>
-        <p class="note">Wait for about 30 sent per strategy before calling a winner, and change one thing at a time.</p>
       </div>
-      <div>
-        <p style="color:var(--ink-2);font-weight:600;margin-bottom:8px">Default daily caps per account</p>
-        <div class="limits">
-          <div><b>30</b>Instagram</div>
-          <div><b>15</b>Facebook</div>
-          <div><b>20</b>LinkedIn</div>
-        </div>
-        <p class="note">Platforms publish no number. Young accounts should start lower. Caps live in <code>outreach.config.json</code>.</p>
+      <div class="card">
+        <h3>Every day</h3>
+        <ol>
+          <li>Pull 10 to 20 leads. Claude drafts the openers; you check them.</li>
+          <li>Click a channel: the profile opens and the message is copied. Paste, send, tick.</li>
+          <li>Mark who replied. The table compares the two strategies.</li>
+        </ol>
+        <div class="caps"><span><b>30</b>Instagram</span><span><b>15</b>Facebook</span><span><b>20</b>LinkedIn</span></div>
+        <p class="small">Default daily limit per account. These are cautious defaults, not official numbers; start lower on a new account and follow each platform's rules. LinkedIn works if you paste a profile link yourself; the search does not find them.</p>
       </div>
     </div>
     <div class="shots">
-      <figure><img src="screenshots/table.png" alt="The outreach table: one row per business with town, neighbour town, Instagram and Facebook cells with open and tick buttons, the assigned strategy, the ready message with a copy button, and the stage."><figcaption>The table. Click a channel to open the profile and copy the message; tick when sent. Daily counters sit in the header.</figcaption></figure>
-      <figure><img src="screenshots/drawer.png" alt="The lead drawer with business details, the strategy picker, the rendered message, the follow-up advice and the opener field."><figcaption>The lead drawer: switch strategy, write the opener, correct the neighbour town, keep notes.</figcaption></figure>
-    </div>
-    <figure><img src="screenshots/analytics.png" alt="Analytics page with one table per strategy, showing sent, replied, reply rate, asset sent, meetings and not interested per channel."><figcaption>Analytics compares strategies by what was actually sent. Screenshots use invented demo businesses.</figcaption></figure>
-  </section>
-
-  <section id="limits" aria-labelledby="h-limits">
-    <h2 id="h-limits">What it deliberately does not do</h2>
-    <div class="never">
-      <div><b>No automated sending.</b>Every DM goes out by hand from your own account. Automated DMs get accounts restricted and read like automation.</div>
-      <div><b>No email.</b>The kit is built for social DMs on Instagram, Facebook and LinkedIn only.</div>
-      <div><b>No cloud database.</b>Leads stay in <code>data/leads.db</code> on your machine and are never committed.</div>
+        <figure><a href="screenshots/table.png"><img src="screenshots/table.png" alt="The full outreach table with filters, daily counters and one row per business."></a><figcaption>The real table (demo data). Click to enlarge.</figcaption></figure>
+        <figure><a href="screenshots/drawer.png"><img src="screenshots/drawer.png" alt="The lead drawer with business details, strategy picker, message and opener field."></a><figcaption>One business, opened</figcaption></figure>
+        <figure><a href="screenshots/analytics.png"><img src="screenshots/analytics.png" alt="Analytics with reply rates per strategy and channel."></a><figcaption>Replies per strategy</figcaption></figure>
     </div>
   </section>
-
-  <footer>
-    Start: open the folder in Claude Code and say “set up”. Commands and file layout: <code>README.md</code>. Data contracts: <code>docs/ARCHITECTURE.md</code>.
-  </footer>
 </main>
 <script>
-const PROBE = [
-  ["Google Maps hits", 822, false],
-  ["Unique businesses", 268, false],
-  ["With a website", 197, false],
-  ["Imported as leads", 44, true],
-  ["Active on social", 29, true],
-];
 const RATE = { cell: 0.0036, profile: 0.185 / 56, secondsPerCell: 115, concurrency: 12 };
-const PRESETS = [["Probe", 20, 44], ["West Yorkshire", 83, 150], ["Greater London", 296, 450], ["Texas", 2600, 3000], ["All of GB", 3002, 3500]];
-
-const bars = document.getElementById("bars");
-const max = PROBE[0][1];
-for (const [label, n, key] of PROBE) {
-  const row = document.createElement("div");
-  row.className = "bar" + (key ? " key" : "");
-  row.innerHTML = `<span class="label">${label}</span><span class="track"><span class="fill" style="width:${Math.max(1.5, 100 * n / max)}%"></span></span><span class="num">${n}</span>`;
-  bars.appendChild(row);
-}
-
-const cells = document.getElementById("cells"), profiles = document.getElementById("profiles");
-const usd = (x) => x < 10 ? "$" + x.toFixed(2) : "$" + Math.round(x);
+const PRESETS = [["Test run", 20], ["West Yorkshire", 83], ["Greater London", 296], ["Texas", 2600]];
+// Bigger areas give fewer new leads per postcode: neighbouring postcodes find the same businesses.
+const profilesFor = (c) => c <= 20 ? 56 : Math.round(2.8 * Math.pow(c, 0.88));
+const cells = document.getElementById("cells");
+const usd = (x) => x < 10 ? "$" + x.toFixed(2) : "$" + Math.round(x).toLocaleString("en");
 function update() {
-  const c = Math.max(0, +cells.value || 0), p = Math.max(0, +profiles.value || 0);
+  const c = Math.max(0, Math.round(+cells.value || 0)), p = c ? profilesFor(c) : 0;
   const s = c * RATE.cell, a = p * RATE.profile;
   document.getElementById("r-scrape").textContent = usd(s);
+  document.getElementById("r-prof").textContent = p.toLocaleString("en");
   document.getElementById("r-act").textContent = usd(a);
   document.getElementById("r-total").textContent = usd(s + a);
   const min = c * RATE.secondsPerCell / RATE.concurrency / 60;
-  document.getElementById("r-time").textContent = min < 90 ? `about ${Math.max(1, Math.round(min))} min` : `about ${(min / 60).toFixed(1)} h`;
-  for (const b of document.querySelectorAll("#presets button")) b.setAttribute("aria-pressed", String(+b.dataset.cells === c && +b.dataset.profiles === p));
+  document.getElementById("r-time").textContent = min < 90 ? `~${Math.max(1, Math.round(min))} min` : `~${(min / 60).toFixed(1)} h`;
+  for (const b of document.querySelectorAll("#presets button")) b.setAttribute("aria-pressed", String(+b.dataset.cells === c));
 }
 const presets = document.getElementById("presets");
-for (const [name, c, p] of PRESETS) {
+for (const [name, c] of PRESETS) {
   const b = document.createElement("button");
-  b.type = "button"; b.textContent = `${name} · ${c.toLocaleString("en")}`;
-  b.dataset.cells = c; b.dataset.profiles = p;
-  b.addEventListener("click", () => { cells.value = c; profiles.value = p; update(); });
+  b.type = "button"; b.textContent = name; b.dataset.cells = c;
+  b.addEventListener("click", () => { cells.value = c; update(); });
   presets.appendChild(b);
 }
-cells.addEventListener("input", update); profiles.addEventListener("input", update);
+cells.addEventListener("input", update);
 update();
 </script>
 </body>
