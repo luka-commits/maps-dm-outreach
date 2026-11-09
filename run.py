@@ -66,7 +66,8 @@ STEPS = ["scrape", "fetch", "collect", "enrich", "import", "activity"]
 
 def parse_args(argv=None) -> argparse.Namespace:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("--country", required=True, help="US, GB, CA, AU, IE or DE")
+    ap.add_argument("--country", required=True,
+                    help="US, GB, CA, AU, IE, DE, or any country added with pipeline/scrape/build_grid.py")
     ap.add_argument("--niche", required=True, help="any keyword, e.g. roofer, or a preset such as locksmith")
     ap.add_argument("--region", help="county / state / part of the country, e.g. 'West Yorkshire', Texas")
     ap.add_argument("--cells", type=int, default=0, help="probe run: only the first N cells")
@@ -99,8 +100,9 @@ def plan_steps(start: str, stop: str, no_activity: bool = False) -> list[str]:
 def validate(a: argparse.Namespace, steps: list[str]) -> dict:
     """Guards that must fail BEFORE anything is paid for. Returns the resolved niche spec."""
     from pipeline.scrape import grid, niches
-    if a.country not in grid.COUNTRIES:
-        raise SystemExit(f"Country {a.country!r} is not supported. Choose one of: {', '.join(grid.COUNTRIES)}")
+    if a.country not in grid.countries():
+        raise SystemExit(f"No postcode grid for {a.country} yet. Build it once (free, a few seconds): "
+                         f"{grid.BUILD_HINT.format(cc=a.country)}\nCountries ready now: {', '.join(grid.countries())}")
     spec = niches.resolve(a.niche, a.search, a.terms)
     if "scrape" in steps:
         grid.check_scope(a.country, a.region, a.cells, a.whole_country)

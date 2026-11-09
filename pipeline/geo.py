@@ -18,9 +18,24 @@ CCTLD = {"GB": (".uk",), "IE": (".ie",), "US": (".us",), "CA": (".ca",), "AU": (
 PLACEHOLDERS = {(47.73855, 12.5088275), (0.0, 0.0)}
 
 
+def box_of(country) -> tuple | None:
+    """The hand-set box, or for a country added with build_grid.py the one stored with its grid."""
+    cc = str(country).upper()
+    if cc in BOXES:
+        return BOXES[cc]
+    from pipeline.scrape import grid
+    box = grid.info(cc).get("box")
+    return tuple(box) if box and len(box) == 4 else None
+
+
+def cctld_of(country) -> tuple:
+    cc = str(country).upper()
+    return CCTLD.get(cc, ("." + cc.lower(),))
+
+
 def in_country(lat, lng, country) -> bool | None:
     """True / False, or None when the point is unusable or the country has no box."""
-    box = BOXES.get(str(country).upper())
+    box = box_of(country)
     if box is None or lat is None or lng is None:
         return None
     try:
@@ -43,4 +58,4 @@ def foreign_country(lat, lng, website, country) -> bool:
         host = (urlparse(website if "://" in website else "//" + website).hostname or "").lower()
     except ValueError:
         host = ""
-    return not host.endswith(CCTLD.get(str(country).upper(), ()))
+    return not host.endswith(cctld_of(country))

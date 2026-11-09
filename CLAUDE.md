@@ -44,8 +44,8 @@ run yourself, and stop only where the user must act in a browser or paste a secr
    promise, in their own words), and which two strategies to start with (explain the four from
    `strategies/README.md` in one line each; default `area-question` vs `opener-offer`). Write the
    answers into the file.
-6. **Probe run.** Ask for a niche keyword and a country (US, GB, CA, AU, IE or DE) and a small
-   region they know. Run a 20-cell probe so they see the whole chain for well under a dollar:
+6. **Probe run.** Ask for a niche keyword and a country and a small region they know (US, GB, CA,
+   AU, IE and DE are ready; any other country first gets its grid, see Daily use → A new country). Run a 20-cell probe so they see the whole chain for well under a dollar:
    `.venv/bin/python run.py --country GB --niche roofer --region "West Yorkshire" --cells 20`.
    Show the funnel it prints. Then start the app in the background (`cd app && npm run dev`) and give the user
    http://localhost:4319.
@@ -59,6 +59,15 @@ Keep a short checklist in the conversation so the user always sees where they ar
   Large countries need `--region` (the US has 41,000 postcode cells). `--search "emergency roofer"`
   changes the Google search phrase while keeping the niche. A stopped run continues with
   `--from <step>`; finished cells are never paid twice.
+- **A new country:** US, GB, CA, AU, IE and DE ship with the kit. For any other country run
+  `.venv/bin/python pipeline/scrape/build_grid.py <CC>` first (free, downloads GeoNames postcodes,
+  a few seconds; about 120 countries are covered). It prints the cells, the cost of the whole
+  country and the region names to use with `--region`; pick one region for the first run. Above
+  about 20,000 cells it suggests `--prefix N` for coarser cells. If GeoNames has no data for the
+  country, say so; there is no grid then. Then, for a country whose language is not English:
+  use the niche keyword in that language (`couvreur`, not `roofer`), because Google's categories
+  come back in it and the niche filter matches on them, and offer to translate the templates in
+  `strategies/strategies.json` into that language, keeping every `{placeholder}` unchanged.
 - **Cost before running:** the scraper prints an estimate (measured $0.0036 per postcode cell on
   Modal; a county is typically 50 to 300 cells). Tell the user the estimate and get a yes before any
   run above about $2. The activity check costs about $0.0022 per Instagram profile and $0.0039 per

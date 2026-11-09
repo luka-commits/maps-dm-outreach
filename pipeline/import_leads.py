@@ -221,9 +221,13 @@ class TownIndex:
 
 def postcode_of(address, country):
     pattern = POSTCODE_PATTERNS.get(country.upper())
+    if pattern is None:
+        from pipeline.scrape import grid           # a country added with build_grid.py
+        pattern = grid.info(country).get("postcode_pattern")
     if not pattern or not address:
         return None
-    matches = re.findall(pattern, address.upper() if country.upper() in ("GB", "IE", "CA") else address)
+    letters = country.upper() in ("GB", "IE", "CA") or "[A-Z]" in pattern
+    matches = re.findall(pattern, address.upper() if letters else address)
     return matches[-1].strip() if matches else None
 
 

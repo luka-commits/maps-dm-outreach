@@ -38,7 +38,8 @@ cd app && npm run dev                      # http://localhost:4319
 ```
 
 Needs Python 3.10+, Node 22.13+, a free [Modal](https://modal.com) account and optionally a free
-[Apify](https://apify.com) account. Countries: US, GB, CA, AU, IE, DE. Any niche keyword works;
+[Apify](https://apify.com) account. Countries: US, GB, CA, AU, IE and DE are ready; about 120 more
+are one free command away (`python3 pipeline/scrape/build_grid.py FR`, see Commands). Any niche keyword works;
 `locksmith`, `towing`, `plumber`, `water-damage`, `electrician`, `autohaus` and `schluesseldienst`
 are tuned presets.
 
@@ -63,6 +64,7 @@ providers' rates on 9 November 2026; check their pricing pages.
 | Task | Command |
 |---|---|
 | Find businesses | `python3 run.py --country <CC> --niche "<keyword>" [--region "<county/state>"] [--cells N] [--search "<google phrase>"]` |
+| Add a country | `python3 pipeline/scrape/build_grid.py <CC> [--prefix N] [--language xx]`, free, from GeoNames; then use the niche keyword in that country's language |
 | Continue a stopped run | same command with `--from <scrape\|fetch\|collect\|enrich\|import\|activity>` |
 | Skip the paid activity check | `--no-activity` |
 | Outreach table | `cd app && npm run dev` |

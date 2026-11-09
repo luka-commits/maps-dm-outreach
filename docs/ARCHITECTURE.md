@@ -28,7 +28,7 @@ Then `cd app && npm run dev` opens the outreach table at http://localhost:4319.
 | `data/social_cache/` | Apify answers, each profile paid once | no |
 | `data/openers/<date>/` | Instagram posts and images fetched for the dm-opener skill | no |
 | `strategies/strategies.json` | DM strategies and templates | yes |
-| `pipeline/scrape/regions/<CC>_postcodes.json` | postcode grids: `{"liste": [{"code","ort","region","land_region","lat","lng"}]}` | yes |
+| `pipeline/scrape/regions/<CC>_postcodes.json` | postcode grids: `{"liste": [{"code","ort","region","land_region","lat","lng"}]}`; six shipped, more via `pipeline/scrape/build_grid.py <CC>` | shipped ones |
 
 Run names: `<CC>-<niche-slug>[-<region-slug>]`, for example `GB-roofer-west-yorkshire`.
 
