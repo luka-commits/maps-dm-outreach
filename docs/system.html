@@ -117,6 +117,11 @@ figure { margin: 0; }
 .money > div > b { display: block; font: 500 30px/1.15 var(--display); color: var(--ink); margin-bottom: 4px; }
 .money span { font-size: 14px; }
 .money span b { color: var(--ink); }
+.money .hero-cost { background: var(--ink); border-color: var(--ink); color: #d8d6cc; }
+.money .hero-cost > b { color: #faf9f5; }
+.money .hero-cost span b { color: #faf9f5; }
+.money .hero-cost ul { list-style: none; margin: 10px 0 0; padding: 8px 0 0; border-top: 1px solid #3d3d3a; font-size: 13px; }
+.money .hero-cost li { padding: 1px 0; }
 details { margin-top: 12px; }
 summary { cursor: pointer; font-weight: 600; color: var(--ink); font-size: 15px; width: fit-content; list-style: none; border: 1px solid var(--line-2); background: var(--surface); border-radius: 10px; padding: 8px 14px; }
 summary::-webkit-details-marker { display: none; }
@@ -145,6 +150,10 @@ td.n { white-space: nowrap; color: var(--ink); font-variant-numeric: tabular-num
 .strat .ch { font-size: 13px; color: var(--muted); margin-bottom: 10px; }
 .dm { background: #fff; border: 1px solid var(--line); border-radius: 16px 16px 16px 4px; padding: 10px 12px; font-size: 14px; line-height: 1.5; color: var(--ink); margin-bottom: 10px; }
 .dm mark { background: var(--accent-tint); color: var(--accent-text); border-radius: 3px; padding: 0 1px; }
+.dm.reply { margin-left: auto; width: fit-content; border-radius: 16px 16px 4px 16px; background: var(--surface-2); font-size: 13px; padding: 6px 11px; }
+.loom { display: flex; align-items: center; gap: 10px; background: #fff; border: 1px solid var(--line); border-radius: 12px; padding: 8px 10px; margin-bottom: 10px; font-size: 12px; line-height: 1.35; color: var(--text); }
+.loom b { color: var(--ink); }
+.loom .play { flex: none; width: 34px; height: 24px; border-radius: 6px; background: #625df5; color: #fff; display: grid; place-items: center; font-size: 11px; }
 .strat p { font-size: 14px; margin: 0; }
 .honest { font-size: 14px; color: var(--ink-2); background: var(--surface-2); border-radius: 10px; padding: 10px 14px; margin: 14px 0 0; }
 
@@ -283,12 +292,13 @@ mark.op, .dm mark.op { background: none; color: var(--ink); border-bottom: 2px d
   <section aria-labelledby="h-cost">
     <h2 id="h-cost">What it costs</h2>
     <div class="money">
-      <div class="card"><b>$0.26</b><span>the test run above</span></div>
-      <div class="card"><b>under $3</b><span>a whole county · West Yorkshire $0.75 · London $2.50</span></div>
+      <div class="card hero-cost"><b>~$12</b><span>per <b>1,000 leads ready to DM</b></span><ul><li>~1,700 postcodes · Modal ~$6</li><li>activity check · Apify ~$6</li><li>Maps search ~4.5 hours</li></ul></div>
+      <div class="card"><b>$0.26</b><span>test run · 29 ready to DM</span></div>
       <div class="card"><b>$0 to start</b><span>free monthly credit · Modal $30 · Apify $5 · plus your Claude Code plan</span></div>
     </div>
+    <p class="small">The 1,000 figure is projected from the test run: bigger areas repeat businesses, so each extra postcode finds fewer new ones.</p>
     <details>
-      <summary>Rates and a calculator for your area</summary>
+      <summary>Calculator for your area</summary>
       <div class="more">
         <div class="card">
           <table>
@@ -309,6 +319,8 @@ mark.op, .dm mark.op { background: none; color: var(--ink); border-bottom: 2px d
             <span>Maps search</span><span class="r" id="r-scrape"></span>
             <span>Activity check (~<span id="r-prof"></span> profiles)</span><span class="r" id="r-act"></span>
             <span class="t">Total</span><span class="r t" id="r-total"></span>
+            <span>Leads ready to DM</span><span class="r" id="r-ready"></span>
+            <span>Per 1,000 ready</span><span class="r" id="r-per"></span>
             <span>Search time</span><span class="r" id="r-time"></span>
           </div>
         </div>
@@ -333,7 +345,9 @@ mark.op, .dm mark.op { background: none; color: var(--ink); border-bottom: 2px d
       <article class="strat card">
         <h3>2 · Work done upfront</h3><span class="ch">Instagram</span>
         <div class="dm">Hey <mark>Sam</mark>, <mark class="op">loved the chapel roof in your last post</mark>. I've already improved your Google profile so you can overtake <mark>Northside Roofing</mark>. Want it?</div>
-        <p>you've done the work already</p>
+        <div class="dm reply">yes, send it</div>
+        <div class="loom"><span class="play" aria-hidden="true">▶</span><span><b>short Loom</b><br>walking through their new profile</span></div>
+        <p>you've done the work already; never ask for a call first</p>
       </article>
       <article class="strat card">
         <h3>3 · Ask first</h3><span class="ch">Instagram</span>
@@ -400,7 +414,9 @@ addEventListener("load", drawLinks);
 drawLinks();
 
 const RATE = { cell: 0.0036, profile: 0.185 / 56, secondsPerCell: 115, concurrency: 12 };
-const PRESETS = [["Test run", 20], ["West Yorkshire", 83], ["Greater London", 296], ["Texas", 2600]];
+const PRESETS = [["Test run", 20], ["West Yorkshire", 83], ["Greater London", 296], ["1,000 ready to DM", 1682]];
+// Test run: 56 profiles checked, 29 still active and ready to DM.
+const READY_PER_PROFILE = 29 / 56;
 // Bigger areas give fewer new leads per postcode: neighbouring postcodes find the same businesses.
 const profilesFor = (c) => c <= 20 ? 56 : Math.round(2.8 * Math.pow(c, 0.88));
 const cells = document.getElementById("cells");
@@ -412,6 +428,9 @@ function update() {
   document.getElementById("r-prof").textContent = p.toLocaleString("en");
   document.getElementById("r-act").textContent = usd(a);
   document.getElementById("r-total").textContent = usd(s + a);
+  const ready = Math.round(p * READY_PER_PROFILE);
+  document.getElementById("r-ready").textContent = "~" + ready.toLocaleString("en");
+  document.getElementById("r-per").textContent = ready ? usd((s + a) / ready * 1000) : "-";
   const min = c * RATE.secondsPerCell / RATE.concurrency / 60;
   document.getElementById("r-time").textContent = min < 90 ? `~${Math.max(1, Math.round(min))} min` : `~${(min / 60).toFixed(1)} h`;
   for (const b of document.querySelectorAll("#presets button")) b.setAttribute("aria-pressed", String(+b.dataset.cells === c));
