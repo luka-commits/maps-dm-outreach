@@ -4,8 +4,8 @@
   python pipeline/scrape/collect.py data/runs/GB-roofer-west-yorkshire --country GB
 
 1. Every cell file is read, every row mapped with `gosom_contract.to_apify_shape`.
-2. Every row carries its cell: `_cell` (postcode), `_region` (county / state), `_land_region`
-   (England, Texas), `_ort` (town). The region comes from the CURRENT postcode grid, not from the
+2. Every row carries its cell: `_cell` (postcode), `_region` (county / state), `_country_part`
+   (England, Texas), `_town` (town). The region comes from the CURRENT postcode grid, not from the
    cell file.
 3. Deduplicated across cells by `gosom_contract.identity_key` (place id, else domain, else phone).
    Neighbouring cells see the same business; the first row is kept.
@@ -63,8 +63,8 @@ def collect(folder: pathlib.Path, country: str, grid: list[dict] | None = None) 
         code = cell["code"]
         known = by_code.get(code) or {}
         region = known.get("region") or cell.get("region")
-        land_region = known.get("land_region") or cell.get("region")
-        town = known.get("ort") or cell.get("town")
+        country_part = known.get("country_part") or cell.get("region")
+        town = known.get("town") or cell.get("town")
         raw_rows = cell.get("rows") or []
         hits += len(raw_rows)
         blocked += bool(cell.get("blocked"))
@@ -79,7 +79,7 @@ def collect(folder: pathlib.Path, country: str, grid: list[dict] | None = None) 
             if key in seen:
                 continue
             seen.add(key)
-            row.update({"_cell": code, "_region": region, "_land_region": land_region, "_ort": town})
+            row.update({"_cell": code, "_region": region, "_country_part": country_part, "_town": town})
             rows.append(row)
             per_region_unique[region] += 1
 

@@ -21,7 +21,7 @@ def test_collect_dedupes_across_cells_and_takes_region_from_grid(tmp_path, grid)
     assert report["cells"] == 3 and report["hits"] == 4 and report["unique"] == 3
     assert report["cells_blocked"] == 1 and report["cells_empty"] == 1
     first = next(r for r in rows if r["placeId"] == "same")
-    assert first["_cell"] == "AA1" and first["_region"] == "Northshire" and first["_ort"] == "Alderton"
+    assert first["_cell"] == "AA1" and first["_region"] == "Northshire" and first["_town"] == "Alderton"
     assert report["with_website"] == 1
 
 

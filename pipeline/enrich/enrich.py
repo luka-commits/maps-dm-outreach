@@ -325,7 +325,7 @@ async def enrich_websites(rows: list[dict[str, Any]], *, concurrency: int = 30,
         row["facebooks"] = _unique([*(row.get("facebooks") or []), *(result.get("facebooks") or [])])
         found = owner_names.find(business_name=row.get("title") or "", emails=row["emails"],
                                  website_name=result.get("website_owner"), towns=towns,
-                                 town=row.get("_ort") or "", trade_terms=trade_terms or ())
+                                 town=row.get("_town") or "", trade_terms=trade_terms or ())
         if found:
             row["ownerName"], row["ownerSource"] = found["first_name"], found["source"]
         row.setdefault("_source", {})["websiteEnrichment"] = {
@@ -348,7 +348,7 @@ def enrich_run(folder: pathlib.Path, country: str, spec: dict, *, concurrency: i
     cache_path = folder / "website_enrichment.json"
     if fresh and cache_path.exists():
         cache_path.unlink()
-    towns = {str(z.get("ort") or "").lower() for z in load_grid(country)} - {""}
+    towns = {str(z.get("town") or "").lower() for z in load_grid(country)} - {""}
     stats = RunStats()
     started = time.monotonic()
     targets = target_rows(rows, spec["terms"], spec.get("exclusions", ()))

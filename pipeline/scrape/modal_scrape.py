@@ -153,9 +153,9 @@ def main(country: str = "GB", niche: str = "", search: str = "", region: str = "
     language = grid.language(country)
     jobs = [{
         "run": name, "prefix": prefix, "fresh": fresh, "language": language,
-        "code": c["code"], "town": c.get("ort"), "region": c.get("region"),
+        "code": c["code"], "town": c.get("town"), "region": c.get("region"),
         # The town name goes along: "roofer in Leeds LS1, GB" reads better to Google than "in LS1".
-        "query": (f"{spec['search']} in {c['ort']} {c['code']}, {country}" if c.get("ort")
+        "query": (f"{spec['search']} in {c['town']} {c['code']}, {country}" if c.get("town")
                   else f"{spec['search']} in {c['code']}, {country}"),
     } for c in selected]
 

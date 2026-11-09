@@ -181,7 +181,7 @@ class TownIndex:
     def __init__(self, grid: list[dict]):
         towns = []
         for e in grid:
-            name, lat, lng = clean(e.get("ort")), number(e.get("lat")), number(e.get("lng"))
+            name, lat, lng = clean(e.get("town")), number(e.get("lat")), number(e.get("lng"))
             if name and lat is not None and lng is not None and -90 <= lat <= 90 and -180 <= lng <= 180:
                 towns.append((lat, lng, name))
         towns.sort()
@@ -314,7 +314,7 @@ def lead_fields(row, run, spec, country, index, blocked=frozenset()):
     # Google's own place name first (it is what the owner would say), then the locality in the
     # address, and only then the nearest postcode centroid, which can name a hamlet next door.
     town = (plausible_city(row.get("city")) or locality_from_address(address)
-            or (index.own(lat, lng) if located else None) or clean(row.get("_ort")))
+            or (index.own(lat, lng) if located else None) or clean(row.get("_town")))
     reviews = number(row.get("reviewsCount"))
     return {
         "id": str(ident), "name": name, "category": clean(row.get("categoryName")),

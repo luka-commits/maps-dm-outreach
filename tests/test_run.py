@@ -51,7 +51,7 @@ def test_cells_and_region_selection():
     assert len(grid.select_cells("GB", None, 20)) == 20
     wy = grid.select_cells("GB", "west yorkshire")
     assert wy and all(c["region"] == "West Yorkshire" for c in wy)
-    england = grid.select_cells("GB", "England")        # matches land_region too
+    england = grid.select_cells("GB", "England")        # matches country_part too
     assert len(england) > len(wy)
     assert grid.language("DE") == "de" and grid.language("GB") == "en"
 
@@ -59,7 +59,7 @@ def test_cells_and_region_selection():
 def test_all_six_grids_have_the_contract_shape():
     for cc in grid.COUNTRIES:
         cells = grid.load_grid(cc)
-        assert cells and {"code", "ort", "region", "land_region", "lat", "lng"} <= set(cells[0])
+        assert cells and {"code", "town", "region", "country_part", "lat", "lng"} <= set(cells[0])
     assert len(grid.load_grid("US")) > 40000
 
 

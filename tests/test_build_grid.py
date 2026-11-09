@@ -23,8 +23,8 @@ def test_one_cell_per_district_and_bulk_mail_codes_dropped():
     cells, extra = build_grid.build("XX", ROWS)
     assert [c["code"] for c in cells] == ["1011", "3011"]
     ams = cells[0]
-    assert ams["ort"] == "Amsterdam" and ams["lat"] == 52.375
-    assert ams["region"] == "Amsterdam" and ams["land_region"] == "North Holland"
+    assert ams["town"] == "Amsterdam" and ams["lat"] == 52.375
+    assert ams["region"] == "Amsterdam" and ams["country_part"] == "North Holland"
     assert cells[1]["region"] == "South Holland"          # no second level: falls back to the first
 
 
@@ -44,8 +44,8 @@ def test_box_and_postcode_pattern():
 
 def test_built_country_is_used_by_run_geo_and_import(tmp_path, monkeypatch):
     monkeypatch.setattr(grid, "REGIONS", tmp_path)
-    (tmp_path / "XX_postcodes.json").write_text('{"liste": [{"code": "1011", "ort": "A", "region": "R", '
-                                                '"land_region": "L", "lat": 52.0, "lng": 4.0}]}')
+    (tmp_path / "XX_postcodes.json").write_text('{"cells": [{"code": "1011", "town": "A", "region": "R", '
+                                                '"country_part": "L", "lat": 52.0, "lng": 4.0}]}')
     (tmp_path / "XX.json").write_text('{"language": "nl", "box": [50, 54, 3, 8], '
                                       r'"postcode_pattern": "\\b\\d{4}\\s?[A-Z]{2}\\b"}')
     assert "XX" in grid.countries() and grid.language("XX") == "nl"

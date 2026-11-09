@@ -9,11 +9,11 @@ from pipeline import _paths
 
 # A tiny invented postcode grid: three towns in a line, plus a far one.
 GRID = [
-    {"code": "AA1", "ort": "Alderton", "region": "Northshire", "land_region": "England", "lat": 53.80, "lng": -1.55},
-    {"code": "AA2", "ort": "Alderton", "region": "Northshire", "land_region": "England", "lat": 53.801, "lng": -1.551},
-    {"code": "BB1", "ort": "Bexley Green", "region": "Northshire", "land_region": "England", "lat": 53.85, "lng": -1.55},
-    {"code": "CC1", "ort": "Carrow", "region": "Northshire", "land_region": "England", "lat": 53.70, "lng": -1.50},
-    {"code": "DD1", "ort": "Dunmere", "region": "Southshire", "land_region": "England", "lat": 51.50, "lng": -0.12},
+    {"code": "AA1", "town": "Alderton", "region": "Northshire", "country_part": "England", "lat": 53.80, "lng": -1.55},
+    {"code": "AA2", "town": "Alderton", "region": "Northshire", "country_part": "England", "lat": 53.801, "lng": -1.551},
+    {"code": "BB1", "town": "Bexley Green", "region": "Northshire", "country_part": "England", "lat": 53.85, "lng": -1.55},
+    {"code": "CC1", "town": "Carrow", "region": "Northshire", "country_part": "England", "lat": 53.70, "lng": -1.50},
+    {"code": "DD1", "town": "Dunmere", "region": "Southshire", "country_part": "England", "lat": 51.50, "lng": -0.12},
 ]
 
 
@@ -24,7 +24,7 @@ def make_row(i, **over):
         "city": "Alderton", "location": {"lat": 53.80, "lng": -1.55}, "phone": "01234 567890",
         "website": f"https://roofing{i}.example-site.co.uk", "totalScore": 4.6, "reviewsCount": 25,
         "emails": [f"info@roofing{i}.example-site.co.uk"], "instagrams": [f"https://www.instagram.com/roofing{i}/"],
-        "facebooks": [], "_region": "Northshire", "_ort": "Alderton", "_cell": "AA1",
+        "facebooks": [], "_region": "Northshire", "_town": "Alderton", "_cell": "AA1",
     }
     row.update(over)
     return row

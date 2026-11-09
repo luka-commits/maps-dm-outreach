@@ -19,7 +19,7 @@ any paid run whether the grid is too fine.
 ## Regions
 
 `region` is the second administrative level when GeoNames has one (county, département, provincia),
-otherwise the first (state, region). `land_region` is always the first. `--region` in run.py matches
+otherwise the first (state, region). `country_part` is always the first. `--region` in run.py matches
 either, so both "Île-de-France" and "Paris" work for FR.
 
 Source: GeoNames postal code data, https://download.geonames.org/export/zip/ (CC BY 4.0). Not every
@@ -142,9 +142,9 @@ def build(cc: str, rows: list[list[str]], prefix: int = 0) -> tuple[list[dict], 
         admin2 = most_common([m[5].strip() for m in members])
         cells.append({
             "code": code,
-            "ort": most_common([m[2].strip() for m in members]),
+            "town": most_common([m[2].strip() for m in members]),
             "region": admin2 or admin1,
-            "land_region": admin1 or admin2,
+            "country_part": admin1 or admin2,
             "lat": round(sum(lats) / len(lats), 4),
             "lng": round(sum(lngs) / len(lngs), 4),
         })
@@ -182,20 +182,20 @@ def main(argv=None) -> None:
                  else "postcode")
     source = f"GeoNames postal codes, {ZIP_URL.format(cc=cc)} (CC BY 4.0)"
     grid.grid_path(cc).write_text(json.dumps(
-        {"country": cc, "cell": cell_kind, "source": source, "liste": cells},
+        {"country": cc, "cell": cell_kind, "source": source, "cells": cells},
         ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
     (grid.REGIONS / f"{cc}.json").write_text(json.dumps(
         {"country": info["country"], "language": language, **extra}, ensure_ascii=False, indent=1) + "\n",
         encoding="utf-8")
 
-    regions = collections.Counter(c["land_region"] for c in cells)
+    regions = collections.Counter(c["country_part"] for c in cells)
     print(f"{cc} ({info['country']}): {len(cells):,} cells, Google language '{language}'")
     print(f"  whole country about ${len(cells) * grid.COST_PER_CELL:,.0f} and "
           f"{len(cells) * grid.SECONDS_PER_CELL / grid.CONCURRENCY / 3600:.1f} hours on Modal")
     print(f"  {len(regions)} regions, for --region: "
           + ", ".join(f"{name} ({n})" for name, n in regions.most_common(6))
           + (" ..." if len(regions) > 6 else ""))
-    print("  example cells: " + ", ".join(f"{c['code']} {c['ort']}" for c in cells[:: max(1, len(cells) // 4)][:4]))
+    print("  example cells: " + ", ".join(f"{c['code']} {c['town']}" for c in cells[:: max(1, len(cells) // 4)][:4]))
     if len(cells) > 20000 and not a.prefix:
         print(f"  That is a fine grid. If nearby cells look alike, rebuild with --prefix "
               f"{max(2, len(cells[0]['code']) - 1)} --force for fewer, larger cells.")

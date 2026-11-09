@@ -29,7 +29,7 @@ def load_grid(country: str) -> list[dict]:
     if not path.is_file():
         raise SystemExit(f"No postcode grid for {country.upper()} yet. Build it (free, a few seconds): "
                          f"{BUILD_HINT.format(cc=country.upper())}")
-    return json.loads(path.read_text(encoding="utf-8"))["liste"]
+    return json.loads(path.read_text(encoding="utf-8"))["cells"]
 
 
 def info(country: str) -> dict:
@@ -45,12 +45,12 @@ def language(country: str) -> str:
 
 def select_cells(country: str, region: str | None = None, limit: int = 0) -> list[dict]:
     """All cells of a country, or the ones of a region. `region` matches the county/state
-    (`region`) or the larger part (`land_region`, e.g. England, Wales, Texas), case-insensitive."""
+    (`region`) or the larger part (`country_part`, e.g. England, Wales, Texas), case-insensitive."""
     cells = load_grid(country)
     if region:
         wanted = region.strip().lower()
         cells = [c for c in cells
-                 if wanted in ((c.get("region") or "").lower(), (c.get("land_region") or "").lower())]
+                 if wanted in ((c.get("region") or "").lower(), (c.get("country_part") or "").lower())]
         if not cells:
             raise SystemExit(f"No cell has the region {region!r} in {country}. "
                              f"Try one of: {', '.join(sample_regions(country))}")

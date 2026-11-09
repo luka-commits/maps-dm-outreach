@@ -50,10 +50,10 @@ def test_import_fields_town_neighbour_region(db_file, spec, grid, monkeypatch):
 
 
 def test_neighbour_town_us_fixture(db_file, spec, monkeypatch):
-    us = [{"code": "78701", "ort": "Springfield", "region": "Texas", "land_region": "Texas", "lat": 30.27, "lng": -97.74},
-          {"code": "78702", "ort": "Springfield", "region": "Texas", "land_region": "Texas", "lat": 30.271, "lng": -97.741},
-          {"code": "78610", "ort": "Buda", "region": "Texas", "land_region": "Texas", "lat": 30.08, "lng": -97.84},
-          {"code": "78660", "ort": "Pflugerville", "region": "Texas", "land_region": "Texas", "lat": 30.44, "lng": -97.62}]
+    us = [{"code": "78701", "town": "Springfield", "region": "Texas", "country_part": "Texas", "lat": 30.27, "lng": -97.74},
+          {"code": "78702", "town": "Springfield", "region": "Texas", "country_part": "Texas", "lat": 30.271, "lng": -97.741},
+          {"code": "78610", "town": "Buda", "region": "Texas", "country_part": "Texas", "lat": 30.08, "lng": -97.84},
+          {"code": "78660", "town": "Pflugerville", "region": "Texas", "country_part": "Texas", "lat": 30.44, "lng": -97.62}]
     row = make_row(7, address="5 Main St, Springfield, TX 78701, USA", location={"lat": 30.27, "lng": -97.74},
                    _region="Texas", city=None, website="https://us-roofer.example.com")
     run_import([row], db_file, spec, us, monkeypatch, country="US", run="US-roofer-texas")
@@ -177,10 +177,10 @@ def test_touched_lead_is_not_removed_when_rules_reject_it(db_file, spec, grid, m
 
 
 CASTLEFORD_GRID = [
-    {"code": "WF10", "ort": "Castleford", "region": "West Yorkshire", "land_region": "England", "lat": 53.725, "lng": -1.35},
-    {"code": "WF10A", "ort": "Castleford Central", "region": "West Yorkshire", "land_region": "England", "lat": 53.726, "lng": -1.351},
-    {"code": "WF3", "ort": "Ledston", "region": "West Yorkshire", "land_region": "England", "lat": 53.757, "lng": -1.34},
-    {"code": "WF7", "ort": "Featherstone", "region": "West Yorkshire", "land_region": "England", "lat": 53.70, "lng": -1.36},
+    {"code": "WF10", "town": "Castleford", "region": "West Yorkshire", "country_part": "England", "lat": 53.725, "lng": -1.35},
+    {"code": "WF10A", "town": "Castleford Central", "region": "West Yorkshire", "country_part": "England", "lat": 53.726, "lng": -1.351},
+    {"code": "WF3", "town": "Ledston", "region": "West Yorkshire", "country_part": "England", "lat": 53.757, "lng": -1.34},
+    {"code": "WF7", "town": "Featherstone", "region": "West Yorkshire", "country_part": "England", "lat": 53.70, "lng": -1.36},
 ]
 
 
