@@ -66,7 +66,9 @@ Keep a short checklist in the conversation so the user always sees where they ar
   $30/month, Apify Free $5/month. Cost table: README.md → Costs.
 - **Outreach:** in the app, "Pull batch" picks today's leads. For leads whose strategy needs an
   opener, use the `dm-opener` skill (`.claude/skills/dm-opener/SKILL.md`). The user sends every
-  message by hand and ticks it. Never automate sending, log into the user's social accounts, or
+  message by hand and ticks it. Per business, every channel it has on the same day: on Instagram and
+  Facebook the user likes a few recent posts, then sends the DM; on LinkedIn the user pastes the
+  profile link into the lead and sends a connection request with the message as the note. Never automate sending, log into the user's social accounts, or
   message anyone on their behalf.
 - **Which strategy works:** the Analytics page compares reply rates per strategy and channel. Help
   the user read it; suggest changing one variable at a time and waiting for at least 30 sent per

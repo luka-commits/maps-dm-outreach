@@ -183,6 +183,12 @@ mark.op, .dm mark.op { background: none; color: var(--ink); border-bottom: 2px d
 .chain2 li.opt { border-style: dashed; }
 .chain2 small { color: var(--muted); font-size: 12px; }
 .dotyou { display: inline-block; width: 12px; height: 12px; border-radius: 4px; background: var(--you); border: 1px solid #e3cbbb; vertical-align: -1px; margin-right: 4px; }
+.chan { display: grid; grid-template-columns: auto 1fr; gap: 8px 14px; align-items: center; margin-top: 14px; padding-top: 12px; border-top: 1px solid var(--line); }
+.chan .ch-name { font-size: 13px; font-weight: 600; color: var(--ink); }
+@media (max-width: 560px) { .chan { grid-template-columns: 1fr; gap: 4px; } .chan .ch-name { margin-top: 6px; } }
+.newrun { display: flex; flex-wrap: wrap; gap: 8px; }
+.newrun .prompt { flex: 0 1 auto; }
+.start .chips { margin-top: 12px; }
 /* Start */
 .start { display: grid; grid-template-columns: 1fr; gap: 12px; margin-top: 16px; }
 .start > div { padding: 18px 20px; }
@@ -382,10 +388,29 @@ mark.op, .dm mark.op { background: none; color: var(--ink); border-bottom: 2px d
         <p class="small"><span class="dotyou"></span>= you, in the browser. Claude does the rest.</p>
       </div>
       <div class="card">
+        <h3>New niche or country <small>one sentence, any time</small></h3>
+        <div class="newrun">
+          <div class="prompt"><span>&gt;</span> find plumbers in Texas</div>
+          <div class="prompt"><span>&gt;</span> find electricians in Ontario, Canada</div>
+        </div>
+        <dl class="chips">
+          <dt>niche</dt><dd><span>any keyword</span><small>plumber, roofer, gym, dentist…</small></dd>
+          <dt>ready</dt><dd><span>US</span><span>UK</span><span>CA</span><span>AU</span><span>IE</span><span>DE</span><small>one state or county at a time</small></dd>
+          <dt>other</dt><dd><span class="opt">any other country</span><small>needs a postcode grid first</small></dd>
+        </dl>
+        <p class="small">Claude shows the cost before it starts. Postcodes already searched for the same niche are not paid twice.</p>
+      </div>
+      <div class="card">
         <h3>Every day</h3>
         <ol class="chain2">
           <li>Pull 10–20 leads</li><li>Check openers</li><li class="you">Send by hand, tick</li><li class="you">Mark replies</li>
         </ol>
+        <div class="chan" aria-label="Per business, every channel it has, on the same day">
+          <span class="ch-name">Instagram</span><ol class="chain2"><li class="you">like a few recent posts</li><li class="you">send the DM</li><li>tick</li></ol>
+          <span class="ch-name">Facebook</span><ol class="chain2"><li class="you">like a few recent posts</li><li class="you">send the DM</li><li>tick</li></ol>
+          <span class="ch-name">LinkedIn</span><ol class="chain2"><li class="you">paste their profile into the lead</li><li class="you">connection request, message as the note</li><li>tick</li></ol>
+        </div>
+        <p class="small">per business: every channel it has, on the same day</p>
         <div class="caps"><span><b>30</b>Instagram</span><span><b>15</b>Facebook</span><span><b>20</b>LinkedIn</span></div>
         <p class="small">daily limit per account, cautious defaults</p>
       </div>
