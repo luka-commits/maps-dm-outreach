@@ -21,7 +21,7 @@
       "needs_opener": false,
       "requires": ["neighbour_town"],
       "template": "Hi, do you also cover {neighbour_town}?",
-      "follow_up": "When they reply: thank them, then make the offer in your own words. Example: \"Nice. I had a look at how you show up on Google in {towns} and put together a few fixes for your profile. Want me to send them over?\""
+      "follow_up": "When they reply: thank them, then make the offer in your own words. Example: \"Nice. I had a look at how you show up on Google in {towns} and put together a few fixes for your profile. Want me to send them over?\" On a yes, send them as a short Loom or document."
     },
     {
       "id": "opener-offer",
@@ -39,7 +39,7 @@
       "needs_opener": true,
       "requires": [],
       "template": "{opener} had a look at your google listing while i was there, want the two things i'd change?",
-      "follow_up": "When they reply: send the two concrete findings (for example missing categories, hours that differ from the website, a competitor above them). Keep it to two."
+      "follow_up": "When they reply: send the two concrete findings (for example missing categories, hours that differ from the website, a competitor above them). Keep it to two, as a short Loom or in plain text."
     },
     {
       "id": "trade-offer",

@@ -154,6 +154,11 @@ td.n { white-space: nowrap; color: var(--ink); font-variant-numeric: tabular-num
 .loom { display: flex; align-items: center; gap: 10px; background: #fff; border: 1px solid var(--line); border-radius: 12px; padding: 8px 10px; margin-bottom: 10px; font-size: 12px; line-height: 1.35; color: var(--text); }
 .loom b { color: var(--ink); }
 .loom .play { flex: none; width: 34px; height: 24px; border-radius: 6px; background: #625df5; color: #fff; display: grid; place-items: center; font-size: 11px; }
+.after { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 12px; margin-top: 12px; padding: 12px 14px; border: 1px dashed var(--line-2); border-radius: 14px; }
+.after .lbl { font-size: 12px; line-height: 1.35; color: var(--muted); }
+.after .dm, .after .loom { margin: 0; }
+.after .dm.reply { margin-left: 0; }
+.after .arrow { color: var(--muted); }
 .strat p { font-size: 14px; margin: 0; }
 .honest { font-size: 14px; color: var(--ink-2); background: var(--surface-2); border-radius: 10px; padding: 10px 14px; margin: 14px 0 0; }
 
@@ -335,30 +340,33 @@ mark.op, .dm mark.op { background: none; color: var(--ink); border-bottom: 2px d
       <div class="bar"><span class="a">A · half your leads</span><span class="b">B · other half</span></div>
       <span class="arrow">→</span><span class="pick">replies counted</span>
     </div>
-    <div class="key"><span><mark class="op">opener</mark> one line on their latest post, Claude drafts, you check</span><span><mark>fill-in</mark> per business</span></div>
+    <div class="key"><span><mark class="op">opener</mark> one line on a recent post of theirs, Claude drafts, you check</span><span><mark>fill-in</mark> per business</span></div>
     <div class="strats">
       <article class="strat card">
-        <h3>1 · Area question</h3><span class="ch">every channel</span>
+        <h3>1 · Area question</h3><span class="ch">every channel, no opener</span>
         <div class="dm">Hi, do you also cover <mark>Headingley</mark>?</div>
-        <p>offer comes in message two</p>
+        <p>no pitch; the offer comes in message two</p>
       </article>
       <article class="strat card">
-        <h3>2 · Work done upfront</h3><span class="ch">Instagram</span>
-        <div class="dm">Hey <mark>Sam</mark>, <mark class="op">loved the chapel roof in your last post</mark>. I've already improved your Google profile so you can overtake <mark>Northside Roofing</mark>. Want it?</div>
-        <div class="dm reply">yes, send it</div>
-        <div class="loom"><span class="play" aria-hidden="true">▶</span><span><b>short Loom</b><br>walking through their new profile</span></div>
-        <p>you've done the work already; never ask for a call first</p>
+        <h3>2 · Personal opener + done-for-you offer</h3><span class="ch">Instagram</span>
+        <div class="dm">Hey <mark>Sam</mark>, <mark class="op">loved the chapel roof you posted</mark><br><br>I checked your visibility in <mark>Leeds and Headingley</mark> and optimised your Google profile so you can get past <mark>Northside Roofing</mark>. You only need to copy it. My promise: <mark>your promise</mark>. Can I send you the profile?</div>
+        <p>the work is already done; they only copy it</p>
       </article>
       <article class="strat card">
-        <h3>3 · Ask first</h3><span class="ch">Instagram</span>
-        <div class="dm"><mark class="op">that chapel roof came out lovely</mark> had a look at your google listing, want the two things i'd change?</div>
-        <p>tips only after a yes</p>
+        <h3>3 · Post comment + permission question</h3><span class="ch">Instagram</span>
+        <div class="dm"><mark class="op">loved the chapel roof you posted</mark> had a look at your google listing while i was there, want the two things i'd change?</div>
+        <p>the two findings go only to people who say yes</p>
       </article>
       <article class="strat card">
-        <h3>4 · Bigger free offer</h3><span class="ch">Instagram</span>
-        <div class="dm"><mark class="op">that chapel roof came out lovely</mark> i help <mark>roofers</mark> get found online. cool if i send you some fixes upfront?</div>
-        <p>more on the table than 3</p>
+        <h3>4 · Post comment + upfront audit offer</h3><span class="ch">Instagram</span>
+        <div class="dm">Hey <mark>Sam</mark>, <mark class="op">loved the chapel roof you posted</mark> i help <mark>roofers</mark> get found online. cool if i send you your google profile, website and seo fixes upfront?</div>
+        <p>same start as 3, offers the work instead; run 3 against 4</p>
       </article>
+    </div>
+    <div class="after" aria-label="After a yes, every strategy delivers the work">
+      <span class="lbl">after a yes,<br>every strategy</span>
+      <div class="dm reply">yes, send it</div><span class="arrow">→</span>
+      <div class="loom"><span class="play" aria-hidden="true">▶</span><span><b>short Loom or text</b><br>the work, walked through</span></div>
     </div>
     <p class="honest"><b>No reply rates yet:</b> the table measures yours. Full templates in <code>strategies/</code>.</p>
   </section>
