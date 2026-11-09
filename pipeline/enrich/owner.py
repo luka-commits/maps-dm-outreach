@@ -18,6 +18,10 @@ import pathlib
 import re
 
 NAMES_FILE = pathlib.Path(__file__).resolve().parent / "firstnames.json"
+# Common German, French, Spanish, Italian, Portuguese and Dutch first names, with and without accents
+# (email addresses have none). Names that are also everyday words there are left out on purpose:
+# Blanca, Marco (frame), Claire, Rosa, Pilar, Luz, Mercedes.
+NAMES_FILE_INTL = NAMES_FILE.with_name("firstnames_intl.json")
 
 # Words in front of an @ that are never a first name.
 GENERIC = {
@@ -27,6 +31,8 @@ GENERIC = {
     "hire", "jobs", "new", "askus", "ask", "quote", "quotes", "general", "main", "reply", "noreply",
     "no-reply", "web", "website", "shop", "orders", "order", "finance", "invoice", "invoices", "hq",
     "uk", "london", "manager", "director", "owner", "boss", "the", "your", "me", "us", "we",
+    # Country names that are also first names: "France Couverture" is a brand, not France.
+    "france", "italia", "espana", "españa", "holland", "india", "jordan", "chad", "georgia", "kenya",
 }
 
 # Names that exist but are almost always the brand when they start a business name (measured:
@@ -51,20 +57,21 @@ TRADE_WORD = re.compile(
 
 
 def _load_names() -> set[str]:
-    if not NAMES_FILE.is_file():
-        return set()
-    try:
-        return {str(n).strip().lower() for n in json.loads(NAMES_FILE.read_text(encoding="utf-8"))
-                if str(n).strip()}
-    except (OSError, json.JSONDecodeError):
-        return set()
+    names: set[str] = set()
+    for path in (NAMES_FILE, NAMES_FILE_INTL):
+        try:
+            names |= {str(n).strip().lower() for n in json.loads(path.read_text(encoding="utf-8"))
+                      if str(n).strip()}
+        except (OSError, json.JSONDecodeError):
+            continue
+    return names
 
 
 FIRST_NAMES = _load_names()
 
 
 def _candidate(word: str, towns: set[str], town: str = "") -> str | None:
-    w = re.sub(r"[^a-zA-ZäöüÄÖÜß'\-]", "", word or "").strip("'-")
+    w = re.sub(r"[^\w'\-]|[\d_]", "", word or "").strip("'-")
     k = w.lower()
     if len(w) < 3 or k in GENERIC or k in BRAND or TRADE_WORD.match(w):
         return None
@@ -171,10 +178,15 @@ def from_emails(emails, towns: set[str], town: str = "", business_name: str = ""
     return next(iter(names.values())) if len(names) == 1 else None
 
 
-I_AM = re.compile(r"\b(?i:i['’]?m|i am|my name is|ich bin|ich heisse|ich heiße)\s+([A-ZÄÖÜ][a-zäöüß'\-]{2,15})\b")
+NAME_WORD = r"([A-ZÀ-ÖØ-Þ][a-zß-öø-ÿ'\-]{2,15})"
+I_AM = re.compile(
+    r"\b(?i:i['’]?m|i am|my name is|ich bin|ich heisse|ich heiße|je m['’]appelle|je suis|moi c['’]est|"
+    r"me llamo|mi nombre es|mi chiamo|chamo-me|o meu nome é|ik ben|mijn naam is)\s+" + NAME_WORD + r"\b")
 OWNER = re.compile(
-    r"\b(?:owner|founder|director|proprietor|inhaber|gr[üu]nder|gesch[äa]ftsf[üu]hrer)\b[^.]{0,30}?"
-    r"\b([A-ZÄÖÜ][a-zäöüß'\-]{2,15})\b", re.I)
+    r"\b(?:owner|founder|director|proprietor|inhaber|gr[üu]nder|gesch[äa]ftsf[üu]hrer|"
+    r"g[ée]rant|fondateur|dirigeant|directeur de (?:la )?publication|responsable de (?:la )?publication|"
+    r"propietario|fundador|gerente|titolare|fondatore|propriet[áa]rio|eigenaar|oprichter)\b[^.]{0,30}?"
+    r"\b" + NAME_WORD + r"\b", re.I)
 
 
 def valid_website_name(name: str | None, towns: set[str] | None = None) -> bool:
@@ -209,5 +221,5 @@ def find(*, business_name: str = "", email="", emails=None, website_text: str = 
             ("business name", from_business_name(business_name, towns, town, trade_terms)),
             ("website", site)):
         if value:
-            return {"first_name": value.capitalize(), "source": source}
+            return {"first_name": "-".join(p.capitalize() for p in value.split("-")), "source": source}
     return None

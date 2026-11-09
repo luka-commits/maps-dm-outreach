@@ -44,17 +44,26 @@ from pipeline.scrape.gosom_contract import field_coverage  # noqa: E402
 from pipeline.scrape.grid import load_grid  # noqa: E402
 
 USER_AGENT = "Mozilla/5.0 (compatible; MapsDmOutreach/1.0; +local-business-research)"
-CACHE_VERSION = 5
+CACHE_VERSION = 6
 MAX_WEBSITE_PAGES = 5
 COMMON_CONTACT_PATHS = ("/contact", "/kontakt", "/impressum", "/about")
+# Link words in the site's own language: French "mentions légales" names the publisher, often the owner.
 CONTACT_PAGE_TERMS = (
-    ("contact", "kontakt", "get-in-touch"),
-    ("impressum", "imprint"),
-    ("about", "about-us", "ueber-uns", "uber-uns"),
-    ("team", "staff", "people"),
+    ("contact", "kontakt", "get-in-touch", "contacto", "contatti", "contato", "nous-contacter"),
+    ("impressum", "imprint", "mentions-legales", "aviso-legal", "note-legali", "colofon"),
+    ("about", "about-us", "ueber-uns", "uber-uns", "qui-sommes-nous", "a-propos", "quienes-somos",
+     "sobre-nosotros", "sobre-nos", "chi-siamo", "over-ons"),
+    ("team", "staff", "people", "equipe", "equipo"),
     ("legal", "privacy", "datenschutz"),
     ("booking", "book", "appointment", "reservation"),
 )
+# Template addresses left in website builders: a French theme shipped john.doe@exemple.com, and
+# "John" ended up as the owner of a roofing firm in Bordeaux.
+PLACEHOLDER_DOMAIN = re.compile(
+    r"^(?:example|exemple|ejemplo|esempio|exemplo|beispiel|voorbeeld|yourdomain|votredomaine|"
+    r"tudominio|ihredomain|mondomaine|domaine)\.")
+PLACEHOLDER_LOCAL = {"john.doe", "jane.doe", "johndoe", "janedoe", "jean.dupont", "max.mustermann",
+                     "juan.perez", "mario.rossi", "jan.jansen"}
 
 
 class RunStats(dict):
@@ -123,7 +132,9 @@ def clean_contact_email(value: str) -> str | None:
     local, domain = email.rsplit("@", 1)
     if not local or "." not in domain or "example." in domain:
         return None
-    if domain in {"email.com", "mysite.com", "domain.com"}:
+    if domain in {"email.com", "mysite.com", "domain.com"} or PLACEHOLDER_DOMAIN.match(domain):
+        return None
+    if local in PLACEHOLDER_LOCAL:
         return None
     if domain == "sentry.io" or domain.endswith((".sentry.io", ".wixpress.com")):
         return None

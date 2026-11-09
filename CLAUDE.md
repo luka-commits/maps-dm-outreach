@@ -68,6 +68,12 @@ Keep a short checklist in the conversation so the user always sees where they ar
   use the niche keyword in that language (`couvreur`, not `roofer`), because Google's categories
   come back in it and the niche filter matches on them, and offer to translate the templates in
   `strategies/strategies.json` into that language, keeping every `{placeholder}` unchanged.
+- **After every probe in a new niche or country:** show the user which Google categories the niche
+  filter dropped (`categoryName` in `data/runs/<run>/enriched_raw.json` for rows not imported).
+  If a real one is among them, run again from the website step with it added
+  (`--terms "couvreur,toiture" --from enrich`, free; the dropped rows' websites were never read).
+  Measured in France: `couvreur` alone dropped 27 "Entreprise de toiture" businesses; adding
+  `toiture` brought them back, though most had too few reviews, so it gave 1 more lead.
 - **Cost before running:** the scraper prints an estimate (measured $0.0036 per postcode cell on
   Modal; a county is typically 50 to 300 cells). Tell the user the estimate and get a yes before any
   run above about $2. The activity check costs about $0.0022 per Instagram profile and $0.0039 per
