@@ -6,6 +6,20 @@ the user sends DMs by hand (Instagram, Facebook, LinkedIn) with split-tested str
 no email channel. Architecture and contracts:
 `docs/ARCHITECTURE.md`. Visual explainer: `docs/system.html`.
 
+## Terminal or VS Code: same steps
+
+The user may run Claude Code in a terminal or in the VS Code extension. Everything below works in
+both because you run every command yourself; never ask the user to type into a terminal.
+
+- **Modal login:** run `.venv/bin/modal setup` in the background. It opens the browser, or prints a
+  `https://modal.com/token-flow/...` link when it cannot; give that link to the user as a clickable
+  link, then wait until `python3 setup/check.py` shows Modal green.
+- **The app:** start `cd app && npm run dev` in the background and give the user the link
+  http://localhost:4319 to open.
+- **Long runs:** a scrape needs about 10 seconds per postcode cell (12 at a time), so anything above
+  about 50 cells takes longer than one command may run. Start it in the background, report progress,
+  and if it stops, continue with the same command plus `--from <step>`.
+
 ## First session: guide the setup
 
 When the user opens this repo for the first time, or says "set up", "get started", "help me install",
@@ -18,8 +32,8 @@ run yourself, and stop only where the user must act in a browser or paste a secr
 2. **Node and the app.** Node 22.13 or newer (it ships SQLite). `cd app && npm install`.
 3. **Modal (runs the Google Maps scraper in the cloud).** The user creates a free account at
    https://modal.com (the Starter plan includes $30 of compute per month, roughly 8,000 postcode
-   cells). Then `.venv/bin/modal setup`, which opens the browser to log in and stores a token in
-   `~/.modal.toml`. Never ask the user to paste the Modal token into the chat.
+   cells). Then `.venv/bin/modal setup` in the background (see above), which opens the browser to log in
+   and stores a token in `~/.modal.toml`. Never ask the user to paste the Modal token into the chat.
 4. **Apify (optional, checks if social accounts are active and fetches posts for openers).** The
    user creates an account at https://apify.com, copies the API token from Settings → Integrations,
    and puts it into `.env` as `APIFY_TOKEN=...` themselves (copy `.env.example`). Do not echo the
@@ -33,7 +47,7 @@ run yourself, and stop only where the user must act in a browser or paste a secr
 6. **Probe run.** Ask for a niche keyword and a country (US, GB, CA, AU, IE or DE) and a small
    region they know. Run a 20-cell probe so they see the whole chain for well under a dollar:
    `.venv/bin/python run.py --country GB --niche roofer --region "West Yorkshire" --cells 20`.
-   Show the funnel it prints. Then start the app (`cd app && npm run dev`) and open
+   Show the funnel it prints. Then start the app in the background (`cd app && npm run dev`) and give the user
    http://localhost:4319.
 7. **Done.** Show them how to pull a first batch and how one DM is sent (see Daily use).
 

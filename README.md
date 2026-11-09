@@ -21,7 +21,7 @@ in your browser.
 Download it: `git clone https://github.com/luka-commits/maps-dm-outreach.git`, or on GitHub click
 **Code → Download ZIP** and unpack it.
 
-Open the folder in Claude Code and say **"set up"**. It walks you through everything
+Open the folder in Claude Code, in the terminal or the VS Code extension, and say **"set up"**. It walks you through everything
 ([`CLAUDE.md`](CLAUDE.md)) and checks each step with `python3 setup/check.py`.
 
 By hand:
