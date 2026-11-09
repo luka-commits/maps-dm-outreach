@@ -4,13 +4,15 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Maps DM Outreach</title>
-<meta name="description" content="Maps DM Outreach in one page: how a niche and a country become local businesses ready to DM, what it costs, the four DM strategies and how to start.">
+<meta name="description" content="How the Maps DM Outreach kit works: what runs in the cloud, what runs on your laptop, what you do, what it costs and the four DM strategies.">
 <style>
 :root {
   --ground: #f5f4ed; --surface: #faf9f5; --surface-2: #f0eee6;
   --ink: #141413; --ink-2: #3d3d3a; --text: #5e5d59; --muted: #75746d;
   --line: #e8e6dc; --line-2: #d1cfc5;
-  --accent: #c96442; --accent-text: #b05538; --accent-tint: rgba(201,100,66,0.1); --accent-border: rgba(201,100,66,0.32);
+  --accent: #c96442; --accent-text: #b05538; --accent-tint: rgba(201,100,66,0.1);
+  --you: #f3e6dc; --laptop: #eef0e8; --cloud: #e6ecf3;
+  --you-ink: #8a4a2e; --laptop-ink: #4f5b3a; --cloud-ink: #3b5f8a;
   --display: "Tiempos Text", Georgia, serif;
   --sans: system-ui, -apple-system, "Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif;
   --mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
@@ -18,11 +20,10 @@
 * { box-sizing: border-box; }
 html { -webkit-text-size-adjust: 100%; }
 body { margin: 0; background: var(--ground); color: var(--text); font: 16px/1.55 var(--sans); }
-main { max-width: 1120px; margin: 0 auto; padding: 0 24px 64px; }
+main { max-width: 1160px; margin: 0 auto; padding: 0 24px 64px; }
 h1, h2, h3 { font-family: var(--display); font-weight: 500; color: var(--ink); margin: 0; text-wrap: balance; }
-h1 { font-size: clamp(34px, 4.6vw, 52px); line-height: 1.06; letter-spacing: -0.8px; }
-h2 { font-size: 28px; line-height: 1.2; margin-bottom: 14px; }
-h2 small { font: 15px var(--sans); color: var(--text); margin-left: 8px; }
+h1 { font-size: clamp(32px, 4vw, 46px); line-height: 1.08; letter-spacing: -0.6px; }
+h2 { font-size: 28px; line-height: 1.2; margin-bottom: 6px; }
 p { margin: 0 0 10px; }
 b { color: var(--ink-2); }
 a { color: var(--accent-text); }
@@ -31,53 +32,50 @@ code { font-family: var(--mono); font-size: 0.86em; background: var(--surface-2)
 .top { display: flex; align-items: center; gap: 8px; padding: 20px 0; font-family: var(--display); color: var(--ink); font-size: 18px; }
 .top .kit { margin-left: auto; font: 14px var(--sans); color: var(--text); }
 section { margin-top: 64px; }
+.sub { max-width: 760px; font-size: 16px; }
+.small { font-size: 13px; margin-top: 8px; }
 figure { margin: 0; }
 
 /* Hero */
-.hero { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 40px; align-items: center; padding-top: 16px; }
-.hero h1 { font-size: clamp(34px, 4vw, 46px); }
-.lede { font-size: 18px; color: var(--ink-2); margin-top: 16px; }
-.cta { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 16px; margin-top: 22px; }
+.hero { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 48px; align-items: end; padding-top: 12px; }
+.lede { font-size: 18px; color: var(--ink-2); margin-top: 14px; max-width: 620px; }
+.cta { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 16px; }
 .btn { display: inline-block; background: var(--ink); color: #faf9f5; text-decoration: none; font-weight: 600; padding: 11px 18px; border-radius: 10px; }
 .btn:focus-visible, summary:focus-visible, .presets button:focus-visible, .calc input:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 .cta span { font-size: 15px; }
-
-.facts { list-style: none; margin: 24px 0 0; padding: 0; font-size: 15px; }
-.facts li { padding: 9px 0; border-top: 1px solid var(--line-2); }
+.facts { list-style: none; margin: 18px 0 0; padding: 0; font-size: 15px; }
+.facts li { padding: 8px 0; border-top: 1px solid var(--line-2); }
 .facts b { color: var(--ink); }
-.honest { font-size: 14px; color: var(--ink-2); background: var(--surface-2); border-radius: 10px; padding: 10px 14px; margin: 14px 0 0; }
-/* Mini table (illustration of the app) */
-.mini { padding: 0; overflow: hidden; box-shadow: 0 18px 40px -28px rgba(20,20,19,0.45); }
-.mini .bar { display: flex; justify-content: space-between; gap: 10px; padding: 10px 14px; border-bottom: 1px solid var(--line); font-size: 13px; color: var(--muted); background: #fff; }
-.mini .bar b { color: var(--ink); }
-.row { display: grid; grid-template-columns: 1fr auto; gap: 4px 12px; padding: 12px 14px; border-bottom: 1px solid var(--line); background: #fff; }
-.row:last-child { border-bottom: 0; }
-.row .biz { font-weight: 600; color: var(--ink); font-size: 15px; }
-.row .meta { font-size: 13px; color: var(--muted); }
-.row .msg { grid-column: 1 / -1; font-size: 14px; color: var(--ink); background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 7px 10px; display: flex; justify-content: space-between; gap: 10px; align-items: center; }
-.row .copy { font-size: 12px; font-weight: 600; color: var(--ink-2); border: 1px solid var(--line-2); border-radius: 6px; padding: 2px 8px; white-space: nowrap; background: #fff; }
-.row .ch { font-size: 12px; font-weight: 600; color: var(--ink-2); border: 1px solid var(--line-2); border-radius: 999px; padding: 1px 8px; align-self: start; }
-.mini + figcaption { font-size: 13px; margin-top: 8px; }
-mark { background: var(--accent-tint); color: var(--accent-text); border-radius: 3px; padding: 0 1px; }
 
-/* Flow + cost */
-.flow { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, 1fr); }
-.flow .bar { display: block; height: 6px; border-radius: 999px; background: var(--surface-2); margin: 8px 0 10px; overflow: hidden; } .flow .bar i { display: block; height: 100%; background: var(--ink-2); border-radius: 999px; }
-.flow li { position: relative; padding: 16px 16px 14px; border: 1px solid var(--line); background: var(--surface); display: flex; flex-direction: column; }
-.flow li:first-child { border-radius: 14px 0 0 14px; }
-.flow li:last-child { border-radius: 0 14px 14px 0; }
-.flow li + li { border-left: 0; }
-.flow li + li::before { content: ""; position: absolute; left: -7px; top: 50%; width: 12px; height: 12px; background: inherit; border-top: 1px solid var(--line-2); border-right: 1px solid var(--line-2); transform: translateY(-50%) rotate(45deg); }
-.flow .n { font-family: var(--display); font-size: 40px; line-height: 1; color: var(--ink); font-variant-numeric: tabular-nums; }
-.flow .what { font-weight: 600; color: var(--ink); margin-top: 10px; }
-.flow .opt { font-weight: 400; color: var(--muted); font-size: 13px; }
-.flow p { font-size: 14px; margin: 2px 0 12px; }
-.flow .cost { margin-top: auto; font-size: 13px; color: var(--muted); border-top: 1px solid var(--line); padding-top: 8px; }
-.flow .cost b { color: var(--ink); }
-.money { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 14px; }
+/* System diagram: three lanes, six steps zig-zagging between them */
+.sys { position: relative; margin-top: 22px; display: grid; grid-template-columns: 96px repeat(13, minmax(0, 1fr)); grid-template-rows: repeat(3, auto); row-gap: 8px; }
+.band { grid-column: 1 / -1; border-radius: 14px; }
+.band.you { grid-row: 1; background: var(--you); }
+.band.laptop { grid-row: 2; background: var(--laptop); }
+.band.cloud { grid-row: 3; background: var(--cloud); }
+.lane { grid-column: 1; align-self: center; padding-left: 14px; font: 600 14px/1.3 var(--sans); z-index: 1; }
+.lane small { display: block; font-weight: 400; font-size: 12px; opacity: 0.85; }
+.lane.you { grid-row: 1; color: var(--you-ink); }
+.lane.laptop { grid-row: 2; color: var(--laptop-ink); }
+.lane.cloud { grid-row: 3; color: var(--cloud-ink); }
+.step { z-index: 1; align-self: center; margin: 12px 8px; background: #fff; border: 1px solid var(--line-2); border-radius: 12px; padding: 10px 11px 9px; display: flex; flex-direction: column; box-shadow: 0 6px 16px -14px rgba(20,20,19,0.5); }
+.step .no { font: 600 12px var(--sans); color: var(--muted); }
+.step h3 { font: 600 15px/1.25 var(--sans); color: var(--ink); margin: 1px 0 4px; }
+.step p { font-size: 13px; line-height: 1.45; margin: 0 0 8px; }
+.step .out { margin-top: auto; border-top: 1px solid var(--line); padding-top: 6px; font-size: 13px; color: var(--ink-2); }
+.step .out b { font: 500 20px var(--display); color: var(--ink); margin-right: 3px; }
+.step .who { font-size: 12px; font-weight: 600; }
+.step.you .who { color: var(--you-ink); } .step.laptop .who { color: var(--laptop-ink); } .step.cloud .who { color: var(--cloud-ink); }
+.sys svg { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1; overflow: visible; }
+#links path { fill: none; stroke: var(--ink-2); stroke-width: 1.5; }
+.legend { display: flex; flex-wrap: wrap; gap: 6px 22px; margin-top: 14px; font-size: 14px; }
+
+/* Costs */
+.money { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 16px; }
 .money > div { padding: 14px 18px; }
-.money > div > b { display: block; font: 500 30px/1.15 var(--display); color: var(--ink); margin-bottom: 4px; } .money span b { color: var(--ink); }
+.money > div > b { display: block; font: 500 30px/1.15 var(--display); color: var(--ink); margin-bottom: 4px; }
 .money span { font-size: 14px; }
+.money span b { color: var(--ink); }
 details { margin-top: 12px; }
 summary { cursor: pointer; font-weight: 600; color: var(--ink); font-size: 15px; width: fit-content; list-style: none; border: 1px solid var(--line-2); background: var(--surface); border-radius: 10px; padding: 8px 14px; }
 summary::-webkit-details-marker { display: none; }
@@ -98,61 +96,48 @@ td.n { white-space: nowrap; color: var(--ink); font-variant-numeric: tabular-num
 .result { margin-top: 10px; display: grid; grid-template-columns: 1fr auto; gap: 2px 12px; font-size: 14px; }
 .result .r { text-align: right; color: var(--ink); font-variant-numeric: tabular-nums; }
 .result .t { font-weight: 600; color: var(--ink); }
-.small { font-size: 13px; margin-top: 8px; }
 
 /* Strategies */
-.strats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
-.strat { padding: 14px; display: flex; flex-direction: column; } .strat .dm { align-self: stretch; }
+.strats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-top: 16px; }
+.strat { padding: 14px; display: flex; flex-direction: column; }
 .strat h3 { font: 600 15px var(--sans); color: var(--ink); }
 .strat .ch { font-size: 13px; color: var(--muted); margin-bottom: 10px; }
-.dm { background: #fff; border: 1px solid var(--line); border-radius: 16px 16px 16px 4px; padding: 10px 12px; font-size: 14px; line-height: 1.5; color: var(--ink); margin-bottom: 10px; align-self: start; }
+.dm { background: #fff; border: 1px solid var(--line); border-radius: 16px 16px 16px 4px; padding: 10px 12px; font-size: 14px; line-height: 1.5; color: var(--ink); margin-bottom: 10px; }
+.dm mark { background: var(--accent-tint); color: var(--accent-text); border-radius: 3px; padding: 0 1px; }
 .strat p { font-size: 14px; margin: 0; }
+.honest { font-size: 14px; color: var(--ink-2); background: var(--surface-2); border-radius: 10px; padding: 10px 14px; margin: 14px 0 0; }
 
 /* Start */
-.start { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.start { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 16px; }
 .start > div { padding: 18px 20px; }
 .start h3 { font: 600 16px var(--sans); color: var(--ink); margin-bottom: 10px; }
 .start ol { margin: 0; padding-left: 20px; }
 .start li { margin-bottom: 6px; font-size: 15px; }
-.you { color: var(--ink); font-weight: 700; }
 .caps { display: flex; flex-wrap: wrap; gap: 6px 18px; margin-top: 12px; font-size: 14px; }
 .caps b { font: 500 22px var(--display); color: var(--ink); margin-right: 4px; }
 .shots { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 16px; }
 .shots img { aspect-ratio: 1440 / 760; object-fit: cover; object-position: top left; width: 100%; display: block; border: 1px solid var(--line-2); border-radius: 10px; background: #fff; }
 .shots figcaption { font-size: 13px; margin-top: 6px; }
 
-@media (max-width: 920px) {
+@media (max-width: 960px) {
   .hero, .start, .more { grid-template-columns: 1fr; }
-  .flow { grid-template-columns: 1fr; }
-  .flow li, .flow li:first-child, .flow li:last-child { border-radius: 0; }
-  .flow li:first-child { border-radius: 14px 14px 0 0; }
-  .flow li:last-child { border-radius: 0 0 14px 14px; }
-  .flow li + li { border-left: 1px solid var(--line); border-top: 0; }
-
-  .flow li + li::before { left: 30px; top: -7px; transform: rotate(135deg); }
-  .flow li { display: grid; grid-template-columns: 74px 1fr; column-gap: 12px; padding: 12px 14px; }
-  .flow .n { grid-row: span 4; font-size: 30px; align-self: start; }
-  .flow .what { margin-top: 0; }
-  .flow p { margin-bottom: 6px; }
-  .flow .cost { border-top: 0; padding-top: 0; }
+  .hero { gap: 22px; }
   .strats { grid-template-columns: 1fr 1fr; }
+  /* The diagram becomes a vertical list; each step keeps its lane colour. */
+  .sys { display: block; }
+  .band, .lane, .sys svg { display: none; }
+  .step { margin: 0 0 10px; }
+  .step.you { background: #fbf3ee; } .step.laptop { background: #f5f6f0; } .step.cloud { background: #f1f4f8; }
 }
 .hero > *, .strats > *, .start > *, .more > *, .money > * { min-width: 0; }
 @media (max-width: 560px) {
   main { padding: 0 16px 48px; }
   .top .kit { display: none; }
-  .strats { grid-template-columns: 1fr; }
-  h2 small { display: block; margin: 4px 0 0; }
-  .money { gap: 8px; grid-template-columns: 1fr; }
-  .money > div { padding: 12px; }
+  .strats, .money { grid-template-columns: 1fr; }
   .money > div > b { font-size: 26px; }
-  .money span { font-size: 13px; line-height: 1.4; display: block; }
   th, td { padding: 8px 10px; }
   td.n { white-space: normal; }
   section { margin-top: 48px; }
-  .mini .bar span:last-child, .row .copy { display: none; }
-  .flow li { grid-template-columns: 56px 1fr; }
-  .flow .n { font-size: 26px; }
   .shots { gap: 8px; } .shots figcaption { font-size: 12px; }
 }
 </style>
@@ -169,41 +154,75 @@ td.n { white-space: nowrap; color: var(--ink); font-variant-numeric: tabular-num
     <div>
       <h1>Type a niche and a country. Get local businesses ready to DM.</h1>
       <p class="lede">The kit finds businesses on Google Maps, looks up their Instagram and Facebook, and gives you a table with a message ready to copy for each one. You send every DM yourself.</p>
-      <div class="cta">
-        <a class="btn" href="https://github.com/luka-commits/maps-dm-outreach">Download on GitHub</a>
-        <span>Then open the folder in Claude Code and say <b>“set up”</b>.</span>
-      </div>
-      <ul class="facts">
-        <li><b>You need</b> Claude Code and a free <b>Modal</b> account (a rented cloud computer that runs the Google search). A free <b>Apify</b> account is optional.</li>
-        <li><b>Countries</b> US, UK, Canada, Australia, Ireland and Germany, with any niche. Big countries run one state or county at a time.</li>
-        <li><b>Nothing is sent for you.</b> You send by hand under daily limits. The lead list is a file on your laptop.</li>
-      </ul>
     </div>
     <div>
-      <figure>
-        <div class="mini card" role="img" aria-label="Illustration of the outreach table: three businesses, each with its town, channel and a ready message with a copy button.">
-          <div class="bar"><span><b>Outreach table</b> · today's batch</span><span>Instagram 4/30 · Facebook 2/15</span></div>
-          <div class="row"><span class="biz">Northside Roofing</span><span class="ch">Facebook</span><span class="meta">Leeds · 4.8 ★ · 61 reviews</span><span></span><span class="msg"><span>Hi, do you also cover <mark>Headingley</mark>?</span><span class="copy">Copy</span></span></div>
-          <div class="row"><span class="biz">Calder Valley Roofers</span><span class="ch">Instagram</span><span class="meta">Halifax · owner: Sam</span><span></span><span class="msg"><span>Hey <mark>Sam</mark>, <mark>loved the chapel roof in your last post</mark>. Want the two things I'd change on your Google listing?</span><span class="copy">Copy</span></span></div>
-          <div class="row"><span class="biz">Aire Slate &amp; Tile</span><span class="ch">Instagram</span><span class="meta">Bradford · 4.6 ★ · 23 reviews</span><span></span><span class="msg"><span>Hi, do you also cover <mark>Shipley</mark>?</span><span class="copy">Copy</span></span></div>
-        </div>
-        <figcaption>Simplified view of the table, invented businesses. Highlighted parts are filled in per business.</figcaption>
-      </figure>
+      <div class="cta">
+        <a class="btn" href="https://github.com/luka-commits/maps-dm-outreach">Download on GitHub</a>
+        <span>then open it in Claude Code and say <b>“set up”</b></span>
+      </div>
+      <ul class="facts">
+        <li><b>You need</b> Claude Code and a free Modal account. Apify is optional.</li>
+        <li><b>Countries</b> US, UK, Canada, Australia, Ireland, Germany. Any niche.</li>
+      </ul>
     </div>
   </div>
 
   <section aria-labelledby="h-how">
-    <h2 id="h-how">What happens, and what it costs <small>a real test run: roofers in 20 postcodes of West Yorkshire</small></h2>
-    <ol class="flow">
-      <li><span class="n">268</span><span class="what">Businesses found</span><span class="bar"><i style="width:100%"></i></span><p>Google Maps, searched postcode by postcode. Measured on one county, a single county-wide search found only about a tenth of these.</p><span class="cost">Modal · <b>$0.07</b> · 3 min</span></li>
-      <li><span class="n">197</span><span class="what">Have a website</span><span class="bar"><i style="width:73%"></i></span><p>Each website is read for Instagram, Facebook and the owner's first name.</p><span class="cost">your laptop · <b>free</b></span></li>
-      <li><span class="n">44</span><span class="what">Leads</span><span class="bar"><i style="width:16%"></i></span><p>Your niche, at least 5 Google reviews, and an Instagram or Facebook.</p><span class="cost">your laptop · <b>free</b></span></li>
-      <li><span class="n">29</span><span class="what">Ready to DM</span><span class="bar"><i style="width:11%"></i></span><p>Accounts silent for six months are dropped (optional check). Each lead gets a ready message.</p><span class="cost">Apify · <b>$0.19</b></span></li>
-    </ol>
+    <h2 id="h-how">How the system works</h2>
+    <p class="sub">Claude Code starts every step for you. Two steps run in the cloud: <b>Modal</b> rents computers by the second and runs many Google searches at once, away from your home connection. <b>Apify</b> reads Instagram and Facebook pages, which block normal scripts. Numbers are from one real test run: roofers in 20 postcodes of West Yorkshire.</p>
+    <div class="sys" id="sys">
+      <div class="band you"></div><div class="band laptop"></div><div class="band cloud"></div>
+      <div class="lane you">You</div>
+      <div class="lane laptop">Your laptop<small>free</small></div>
+      <div class="lane cloud">Cloud<small>pay per use</small></div>
+
+      <article class="step you" style="grid-column:2 / span 3;grid-row:1" data-i="1">
+        <span class="no">1 · <span class="who">you</span></span>
+        <h3>Ask for a niche and an area</h3>
+        <p>In Claude Code: “find roofers in West Yorkshire”.</p>
+        <span class="out"><b>20</b>postcodes picked</span>
+      </article>
+      <article class="step cloud" style="grid-column:4 / span 3;grid-row:3" data-i="2">
+        <span class="no">2 · <span class="who">Modal</span></span>
+        <h3>Search Google Maps</h3>
+        <p>One search per postcode, 12 rented computers at once. Google stops at ~60 results per search, so many small searches find far more.</p>
+        <span class="out"><b>268</b>businesses · $0.07</span>
+      </article>
+      <article class="step laptop" style="grid-column:6 / span 3;grid-row:2" data-i="3">
+        <span class="no">3 · <span class="who">laptop</span></span>
+        <h3>Read websites, filter</h3>
+        <p>Opens each website and finds Instagram, Facebook and the owner's name. Keeps a business only if it fits your niche, has 5+ reviews and an Instagram or Facebook.</p>
+        <span class="out"><b>44</b>of 268 kept · free</span>
+      </article>
+      <article class="step cloud" style="grid-column:8 / span 3;grid-row:3" data-i="4">
+        <span class="no">4 · <span class="who">Apify, optional</span></span>
+        <h3>Check their Instagram and Facebook</h3>
+        <p>Drops businesses with no post in six months. Skip it and all 44 go on.</p>
+        <span class="out"><b>29</b>active · $0.19</span>
+      </article>
+      <article class="step laptop" style="grid-column:10 / span 3;grid-row:2" data-i="5">
+        <span class="no">5 · <span class="who">laptop</span></span>
+        <h3>Fill the outreach table</h3>
+        <p>A table in your browser, running on your laptop. Each lead gets a strategy and a message; Claude drafts the openers.</p>
+        <span class="out"><b>29</b>messages ready</span>
+      </article>
+      <article class="step you" style="grid-column:12 / span 3;grid-row:1" data-i="6">
+        <span class="no">6 · <span class="who">you</span></span>
+        <h3>Send by hand</h3>
+        <p>Click, the profile opens and the message is copied. Paste, send, tick. Mark replies.</p>
+        <span class="out"><b>30</b>a day max per account</span>
+      </article>
+      <svg aria-hidden="true"><defs><marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#3d3d3a" stroke="none"/></marker></defs><g id="links"></g></svg>
+    </div>
+    <div class="legend"><span>Whole test run: <b>$0.26</b>, Maps search 3 minutes.</span><span>Nothing is ever sent for you, and the lead list is a file on your laptop.</span></div>
+  </section>
+
+  <section aria-labelledby="h-cost">
+    <h2 id="h-cost">What it costs</h2>
     <div class="money">
-      <div class="card lead"><b>$0.26</b><span>this test run, 20 postcodes, everything included</span></div>
+      <div class="card"><b>$0.26</b><span>the test run above, 20 postcodes, everything included</span></div>
       <div class="card"><b>under $3</b><span>a whole county (80 to 300 postcodes): West Yorkshire about $0.75, Greater London about $2.50</span></div>
-      <div class="card"><b>$0 to start</b><span>free plans: Modal $30 a month, Apify $5. <b>Plus your Claude Code plan.</b></span></div>
+      <div class="card"><b>$0 to start</b><span>free monthly credit: Modal $30, Apify $5. <b>Plus your Claude Code plan.</b></span></div>
     </div>
     <details>
       <summary>Rates and a calculator for your area</summary>
@@ -218,7 +237,7 @@ td.n { white-space: nowrap; color: var(--ink); font-variant-numeric: tabular-num
               <tr><td>Everything else</td><td class="n">free</td><td>your laptop</td></tr>
             </tbody>
           </table>
-          <p class="small" style="padding:0 14px 6px">Free allowances are the providers' standard monthly plans. Prices as of 9 November 2026.</p>
+          <p class="small" style="padding:0 14px 6px">Free allowances are the providers' standard monthly plans. Prices as of 9 November 2026. Big countries run one state or county at a time.</p>
         </div>
         <div class="card calc">
           <div class="presets" role="group" aria-label="Example areas" id="presets"></div>
@@ -235,8 +254,8 @@ td.n { white-space: nowrap; color: var(--ink); font-variant-numeric: tabular-num
   </section>
 
   <section aria-labelledby="h-strat">
-    <h2 id="h-strat">Four DM strategies <small>pick two; the table splits your leads and counts the replies</small></h2>
-    <p class="sub">An <b>opener</b> is one line about the business's latest Instagram post. Claude drafts it, you check it. Highlighted parts are filled in per business.</p>
+    <h2 id="h-strat">Four DM strategies</h2>
+    <p class="sub">You pick two; the table splits your leads between them and counts the replies. An <b>opener</b> is one line about the business's latest Instagram post, drafted by Claude and checked by you. Highlighted parts are filled in per business.</p>
     <div class="strats">
       <article class="strat card">
         <h3>1 · Area question</h3><span class="ch">every channel</span>
@@ -246,7 +265,7 @@ td.n { white-space: nowrap; color: var(--ink); font-variant-numeric: tabular-num
       <article class="strat card">
         <h3>2 · Work done upfront</h3><span class="ch">Instagram, with opener</span>
         <div class="dm">Hey <mark>Sam</mark>, <mark>loved the chapel roof in your last post</mark>. I've already improved your Google profile so you can overtake <mark>Northside Roofing</mark>. Want it?</div>
-        <p>You do a piece of your own service first, here a better Google profile. The competitor named is the top-rated one in their town.</p>
+        <p>You do a piece of your own service first. The competitor named is the top-rated one in their town.</p>
       </article>
       <article class="strat card">
         <h3>3 · Ask first</h3><span class="ch">Instagram, with opener</span>
@@ -270,8 +289,8 @@ td.n { white-space: nowrap; color: var(--ink); font-variant-numeric: tabular-num
         <ol>
           <li>Download the repo, open it in Claude Code, say <b>“set up”</b>.</li>
           <li>Claude installs the rest and checks each step.</li>
-          <li><span class="you">You:</span> create a free Modal account and log in once.</li>
-          <li><span class="you">You, optional:</span> paste an Apify key.</li>
+          <li><b>You:</b> create a free Modal account and log in once.</li>
+          <li><b>You, optional:</b> paste an Apify key.</li>
           <li>Claude asks your name, offer and two strategies, then runs a test for under $0.30.</li>
         </ol>
       </div>
@@ -279,21 +298,44 @@ td.n { white-space: nowrap; color: var(--ink); font-variant-numeric: tabular-num
         <h3>Every day</h3>
         <ol>
           <li>Pull 10 to 20 leads. Claude drafts the openers; you check them.</li>
-          <li>Click a channel: the profile opens and the message is copied. Paste, send, tick.</li>
+          <li>Send them by hand and tick each one.</li>
           <li>Mark who replied. The table compares the two strategies.</li>
         </ol>
         <div class="caps"><span><b>30</b>Instagram</span><span><b>15</b>Facebook</span><span><b>20</b>LinkedIn</span></div>
-        <p class="small">Default daily limit per account. These are cautious defaults, not official numbers; start lower on a new account and follow each platform's rules. LinkedIn works if you paste a profile link yourself; the search does not find them.</p>
+        <p class="small">Default daily limit per account: cautious defaults, not official numbers. Start lower on a new account and follow each platform's rules. LinkedIn works if you paste a profile link yourself.</p>
       </div>
     </div>
     <div class="shots">
-        <figure><a href="screenshots/table.png"><img src="screenshots/table.png" alt="The full outreach table with filters, daily counters and one row per business."></a><figcaption>The real table (demo data). Click to enlarge.</figcaption></figure>
-        <figure><a href="screenshots/drawer.png"><img src="screenshots/drawer.png" alt="The lead drawer with business details, strategy picker, message and opener field."></a><figcaption>One business, opened</figcaption></figure>
-        <figure><a href="screenshots/analytics.png"><img src="screenshots/analytics.png" alt="Analytics with reply rates per strategy and channel."></a><figcaption>Replies per strategy</figcaption></figure>
+      <figure><a href="screenshots/table.png"><img src="screenshots/table.png" alt="The full outreach table with filters, daily counters and one row per business."></a><figcaption>The real table (demo data). Click to enlarge.</figcaption></figure>
+      <figure><a href="screenshots/drawer.png"><img src="screenshots/drawer.png" alt="The lead drawer with business details, strategy picker, message and opener field."></a><figcaption>One business, opened</figcaption></figure>
+      <figure><a href="screenshots/analytics.png"><img src="screenshots/analytics.png" alt="Analytics with reply rates per strategy and channel."></a><figcaption>Replies per strategy</figcaption></figure>
     </div>
   </section>
 </main>
 <script>
+// Diagram connectors: an elbow arrow from each step to the next, drawn from the real card positions.
+function drawLinks() {
+  const sys = document.getElementById("sys"), g = document.getElementById("links");
+  g.innerHTML = "";
+  if (getComputedStyle(sys).display !== "grid") return;
+  const box = sys.getBoundingClientRect();
+  const steps = [...sys.querySelectorAll(".step")].sort((a, b) => a.dataset.i - b.dataset.i);
+  for (let i = 0; i < steps.length - 1; i++) {
+    const a = steps[i].getBoundingClientRect(), b = steps[i + 1].getBoundingClientRect();
+    // Neighbouring cards overlap by one column; the arrow runs straight up or down through that overlap.
+    const x = (Math.max(a.left, b.left) + Math.min(a.right, b.right)) / 2 - box.left;
+    const down = b.top > a.top;
+    const y1 = (down ? a.bottom : a.top) - box.top, y2 = (down ? b.top - 3 : b.bottom + 3) - box.top;
+    const p = document.createElementNS("http://www.w3.org/2000/svg", "path");
+    p.setAttribute("d", `M${x} ${y1} V${y2}`);
+    p.setAttribute("marker-end", "url(#arr)");
+    g.appendChild(p);
+  }
+}
+addEventListener("resize", drawLinks);
+addEventListener("load", drawLinks);
+drawLinks();
+
 const RATE = { cell: 0.0036, profile: 0.185 / 56, secondsPerCell: 115, concurrency: 12 };
 const PRESETS = [["Test run", 20], ["West Yorkshire", 83], ["Greater London", 296], ["Texas", 2600]];
 // Bigger areas give fewer new leads per postcode: neighbouring postcodes find the same businesses.
