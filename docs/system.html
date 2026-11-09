@@ -24,6 +24,7 @@ main { max-width: 1160px; margin: 0 auto; padding: 0 24px 64px; }
 h1, h2, h3 { font-family: var(--display); font-weight: 500; color: var(--ink); margin: 0; text-wrap: balance; }
 h1 { font-size: clamp(32px, 4vw, 46px); line-height: 1.08; letter-spacing: -0.6px; }
 h2 { font-size: 28px; line-height: 1.2; margin-bottom: 6px; }
+h2 small { font: 15px var(--sans); color: var(--text); margin-left: 8px; }
 p { margin: 0 0 10px; }
 b { color: var(--ink-2); }
 a { color: var(--accent-text); }
@@ -168,24 +169,23 @@ td.n { white-space: nowrap; color: var(--ink); font-variant-numeric: tabular-num
   </div>
 
   <section aria-labelledby="h-how">
-    <h2 id="h-how">How the system works</h2>
-    <p class="sub">Claude Code starts every step for you. Two steps run in the cloud: <b>Modal</b> rents computers by the second and runs many Google searches at once, away from your home connection. <b>Apify</b> reads Instagram and Facebook pages, which block normal scripts. Numbers are from one real test run: roofers in 20 postcodes of West Yorkshire.</p>
+    <h2 id="h-how">How the system works <small>numbers from a real test run</small></h2>
     <div class="sys" id="sys">
       <div class="band you"></div><div class="band laptop"></div><div class="band cloud"></div>
-      <div class="lane you">You</div>
+      <div class="lane you">You<small>in Claude Code</small></div>
       <div class="lane laptop">Your laptop<small>free</small></div>
-      <div class="lane cloud">Cloud<small>pay per use</small></div>
+      <div class="lane cloud">Cloud<small>pay per use<br>this run: $0.26</small></div>
 
       <article class="step you" style="grid-column:2 / span 3;grid-row:1" data-i="1">
         <span class="no">1 · <span class="who">you</span></span>
         <h3>Ask for a niche and an area</h3>
-        <p>In Claude Code: “find roofers in West Yorkshire”.</p>
+        <p>“Find roofers in West Yorkshire.” Claude Code runs every step from here.</p>
         <span class="out"><b>20</b>postcodes picked</span>
       </article>
       <article class="step cloud" style="grid-column:4 / span 3;grid-row:3" data-i="2">
         <span class="no">2 · <span class="who">Modal</span></span>
         <h3>Search Google Maps</h3>
-        <p>One search per postcode, 12 rented computers at once. Google stops at ~60 results per search, so many small searches find far more.</p>
+        <p>Modal rents computers by the second. 12 search at once, one postcode each, not from your home connection. Google shows only ~60 results per search, so small searches find far more.</p>
         <span class="out"><b>268</b>businesses · $0.07</span>
       </article>
       <article class="step laptop" style="grid-column:6 / span 3;grid-row:2" data-i="3">
@@ -197,7 +197,7 @@ td.n { white-space: nowrap; color: var(--ink); font-variant-numeric: tabular-num
       <article class="step cloud" style="grid-column:8 / span 3;grid-row:3" data-i="4">
         <span class="no">4 · <span class="who">Apify, optional</span></span>
         <h3>Check their Instagram and Facebook</h3>
-        <p>Drops businesses with no post in six months. Skip it and all 44 go on.</p>
+        <p>Apify can read Instagram and Facebook, which block normal scripts. Drops businesses with no post in six months. Skip it and all 44 go on.</p>
         <span class="out"><b>29</b>active · $0.19</span>
       </article>
       <article class="step laptop" style="grid-column:10 / span 3;grid-row:2" data-i="5">
@@ -209,12 +209,11 @@ td.n { white-space: nowrap; color: var(--ink); font-variant-numeric: tabular-num
       <article class="step you" style="grid-column:12 / span 3;grid-row:1" data-i="6">
         <span class="no">6 · <span class="who">you</span></span>
         <h3>Send by hand</h3>
-        <p>Click, the profile opens and the message is copied. Paste, send, tick. Mark replies.</p>
+        <p>Nothing is sent for you. Click, the profile opens and the message is copied. Paste, send, tick.</p>
         <span class="out"><b>30</b>a day max per account</span>
       </article>
       <svg aria-hidden="true"><defs><marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#3d3d3a" stroke="none"/></marker></defs><g id="links"></g></svg>
     </div>
-    <div class="legend"><span>Whole test run: <b>$0.26</b>, Maps search 3 minutes.</span><span>Nothing is ever sent for you, and the lead list is a file on your laptop.</span></div>
   </section>
 
   <section aria-labelledby="h-cost">
