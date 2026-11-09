@@ -1,0 +1,12 @@
+.venv/
+data/
+.env
+outreach.config.json
+__pycache__/
+*.pyc
+.pytest_cache/
+app/node_modules/
+app/.next/
+*.tsbuildinfo
+.impeccable/
+.DS_Store

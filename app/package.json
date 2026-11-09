@@ -1,0 +1,29 @@
+{
+  "name": "outreach-table",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Local outreach table for hand-sent DMs, with split-tested strategies.",
+  "engines": { "node": ">=22.13" },
+  "scripts": {
+    "dev": "WATCHPACK_POLLING=true node scripts/serve.mjs dev",
+    "start": "node scripts/serve.mjs start",
+    "test": "node --import tsx --test tests/*.test.ts",
+    "typecheck": "tsc --noEmit",
+    "build": "next build",
+    "seed-demo": "node --import tsx scripts/seed-demo.ts"
+  },
+  "dependencies": {
+    "lucide-react": "^0.468.0",
+    "next": "^15.5.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "playwright": "^1.55.0",
+    "tsx": "^4.20.0",
+    "typescript": "^5.7.0"
+  }
+}

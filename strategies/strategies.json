@@ -1,0 +1,54 @@
+{
+  "_": "DM strategies the app can split-test. Activate them in outreach.config.json -> active_strategies. Placeholders are documented in strategies/README.md. A strategy with needs_opener only goes to leads with Instagram, because the opener comes from their posts.",
+  "placeholders": {
+    "greeting": "\"Hey {first_name},\" when the owner's first name is known, otherwise \"Hey,\"",
+    "first_name": "owner's first name from the website, may be empty",
+    "town": "the lead's town",
+    "neighbour_town": "manual override if set, otherwise the nearest other town at least 2 km away",
+    "towns": "\"{town} and {neighbour_town}\", or just \"{town}\" when there is no distinct neighbour",
+    "competitor_clause": "\"so you can get past {competitor}\" (the business with the most reviews in the same town, else region), otherwise \"so you rank higher on Google\"",
+    "opener": "the one personal line about a recent post, written by the dm-opener skill or by hand",
+    "trade": "what the business does in plain words, defaults to the niche keyword in plural",
+    "offer_service": "outreach.config.json -> offer.service",
+    "offer_promise": "outreach.config.json -> offer.promise",
+    "sender_name": "outreach.config.json -> sender_name"
+  },
+  "strategies": [
+    {
+      "id": "area-question",
+      "name": "Area question",
+      "summary": "A one-line, no-pitch question about a neighbouring town. Almost everyone answers it, and the answer opens the conversation where you make the offer.",
+      "needs_opener": false,
+      "requires": ["neighbour_town"],
+      "template": "Hi, do you also cover {neighbour_town}?",
+      "follow_up": "When they reply: thank them, then make the offer in your own words. Example: \"Nice. I had a look at how you show up on Google in {towns} and put together a few fixes for your profile. Want me to send them over?\""
+    },
+    {
+      "id": "opener-offer",
+      "name": "Personal opener + done-for-you offer",
+      "summary": "One personal line about a recent post, then a concrete offer that is already done and costs them nothing to accept.",
+      "needs_opener": true,
+      "requires": ["town"],
+      "template": "{greeting} {opener}\n\nI checked your visibility in {towns} and optimised your Google profile {competitor_clause}. You only need to copy it. My promise: {offer_promise}. Can I send you the profile?",
+      "follow_up": "When they say yes: send the finished profile text or a short Loom walking through it. Never ask for a call before they have seen the work."
+    },
+    {
+      "id": "post-question",
+      "name": "Post comment + permission question",
+      "summary": "A comment on their post, then a question asking permission to share what you noticed. The finding itself is held back for the second message, so the first one costs them nothing.",
+      "needs_opener": true,
+      "requires": [],
+      "template": "{opener} had a look at your google listing while i was there, want the two things i'd change?",
+      "follow_up": "When they reply: send the two concrete findings (for example missing categories, hours that differ from the website, a competitor above them). Keep it to two."
+    },
+    {
+      "id": "trade-offer",
+      "name": "Post comment + upfront audit offer",
+      "summary": "A comment on their post, then a short offer of free upfront work for their trade.",
+      "needs_opener": true,
+      "requires": [],
+      "template": "{greeting} {opener} i help {trade} get found online. cool if i send you your google profile, website and seo fixes upfront?",
+      "follow_up": "When they say yes: deliver the fixes as a short document or Loom, then ask whether they want help putting them live."
+    }
+  ]
+}

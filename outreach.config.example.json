@@ -1,0 +1,14 @@
+{
+  "sender_name": "Alex",
+  "timezone": "Europe/London",
+  "language_note": "Messages are written in English. Change the templates in strategies/strategies.json for another language.",
+  "offer": {
+    "service": "Google Business Profile optimisation",
+    "promise": "ten new jobs in 60 days, free for you"
+  },
+  "active_strategies": ["area-question", "opener-offer"],
+  "daily_limits": { "instagram": 30, "facebook": 15, "linkedin": 20 },
+  "import": { "min_reviews": 5, "require_website": true },
+  "activity_check": { "enabled": true, "inactive_after_months": 6 },
+  "app_port": 4319
+}
