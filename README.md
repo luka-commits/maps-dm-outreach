@@ -18,7 +18,10 @@ in your browser.
 
 ## Get started
 
-Open this folder in Claude Code and say **"set up"**. It walks you through everything
+Download it: `git clone https://github.com/luka-commits/maps-dm-outreach.git`, or on GitHub click
+**Code → Download ZIP** and unpack it.
+
+Open the folder in Claude Code and say **"set up"**. It walks you through everything
 ([`CLAUDE.md`](CLAUDE.md)) and checks each step with `python3 setup/check.py`.
 
 By hand:
@@ -75,3 +78,5 @@ by hand from your own account. There is no email channel. Lead data stays on you
 
 DM strategies and the rules behind them: [`strategies/README.md`](strategies/README.md).
 Architecture and data contracts: [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md).
+
+MIT licensed: use it, change it, share it. See [`LICENSE`](LICENSE).
