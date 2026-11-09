@@ -67,7 +67,36 @@ figure { margin: 0; }
 .step .out b { font: 500 20px var(--display); color: var(--ink); margin-right: 3px; }
 .step .who { font-size: 12px; font-weight: 600; }
 .step.you .who { color: var(--you-ink); } .step.laptop .who { color: var(--laptop-ink); } .step.cloud .who { color: var(--cloud-ink); }
-.sys svg { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1; overflow: visible; }
+.step .head { display: flex; flex-direction: column-reverse; align-items: flex-start; gap: 1px; }
+.step .head h3 { margin: 0; }
+.step .tag { font-size: 12px; font-weight: 600; white-space: nowrap; }
+.step.cloud .tag { color: var(--cloud-ink); } .step.laptop .tag { color: var(--laptop-ink); }
+.viz { min-height: 74px; display: flex; flex-direction: column; justify-content: center; gap: 6px; margin: 10px 0; }
+.vizcap { font-size: 12px; line-height: 1.35; color: var(--muted); }
+.prompt { background: var(--ink); color: #f5f4ed; font: 13px/1.4 var(--mono); border-radius: 8px; padding: 9px 10px; }
+.prompt span { color: #c9a48f; }
+.cells { display: grid; grid-template-columns: repeat(10, 1fr); gap: 3px; max-width: 170px; }
+.cells i { aspect-ratio: 1; border-radius: 3px; background: #d5dde8; }
+.cells i.on { background: var(--cloud-ink); }
+.ico { width: 24px; height: 24px; fill: none; stroke: var(--ink-2); stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; flex: none; }
+.ico .dot { fill: var(--ink-2); stroke: none; }
+.chain { display: flex; align-items: center; gap: 6px; }
+.chain .arrow { color: var(--muted); margin: 0 2px; }
+.profiles { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; font-size: 12px; }
+.profiles li { display: flex; align-items: center; gap: 6px; }
+.profiles .ico { width: 16px; height: 16px; }
+.profiles span { flex: 1; color: var(--ink-2); }
+.profiles b.ok { color: #4f7a3a; }
+.profiles li.dead { opacity: 0.55; } .profiles li.dead span { text-decoration: line-through; } .profiles li.dead b { color: var(--accent-text); }
+.tbl { display: grid; gap: 4px; }
+.tbl div { display: flex; align-items: center; gap: 6px; border: 1px solid var(--line); border-radius: 6px; padding: 4px 6px; background: var(--surface); }
+.tbl i { height: 6px; width: 34px; border-radius: 3px; background: var(--line-2); }
+.tbl i.w { flex: 1; background: var(--surface-2); }
+.tbl span { font-size: 10px; font-weight: 600; border: 1px solid var(--line-2); border-radius: 4px; padding: 0 5px; color: var(--ink-2); background: #fff; }
+.bubble { background: var(--surface); border: 1px solid var(--line); border-radius: 14px 14px 14px 4px; padding: 8px 10px; font-size: 13px; color: var(--ink); }
+.bubble mark { background: var(--accent-tint); color: var(--accent-text); border-radius: 3px; padding: 0 1px; }
+.step .out em { font-style: normal; font-size: 12px; color: var(--muted); margin-left: 4px; }
+.sys > svg { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1; overflow: visible; }
 #links path { fill: none; stroke: var(--ink-2); stroke-width: 1.5; }
 .legend { display: flex; flex-wrap: wrap; gap: 6px 22px; margin-top: 14px; font-size: 14px; }
 
@@ -126,7 +155,7 @@ td.n { white-space: nowrap; color: var(--ink); font-variant-numeric: tabular-num
   .strats { grid-template-columns: 1fr 1fr; }
   /* The diagram becomes a vertical list; each step keeps its lane colour. */
   .sys { display: block; }
-  .band, .lane, .sys svg { display: none; }
+  .band, .lane, .sys > svg { display: none; }
   .step { margin: 0 0 10px; }
   .step.you { background: #fbf3ee; } .step.laptop { background: #f5f6f0; } .step.cloud { background: #f1f4f8; }
 }
@@ -177,40 +206,34 @@ td.n { white-space: nowrap; color: var(--ink); font-variant-numeric: tabular-num
       <div class="lane cloud">Cloud<small>pay per use<br>this run: $0.26</small></div>
 
       <article class="step you" style="grid-column:2 / span 3;grid-row:1" data-i="1">
-        <span class="no">1 · <span class="who">you</span></span>
-        <h3>Ask for a niche and an area</h3>
-        <p>“Find roofers in West Yorkshire.” Claude Code runs every step from here.</p>
-        <span class="out"><b>20</b>postcodes picked</span>
+        <div class="head"><h3>1 · Ask</h3></div>
+        <div class="viz"><div class="prompt"><span>&gt;</span> find roofers in West Yorkshire</div></div>
+        <span class="out"><b>20</b>postcodes</span>
       </article>
       <article class="step cloud" style="grid-column:4 / span 3;grid-row:3" data-i="2">
-        <span class="no">2 · <span class="who">Modal</span></span>
-        <h3>Search Google Maps</h3>
-        <p>Modal rents computers by the second. 12 search at once, one postcode each, not from your home connection. Google shows only ~60 results per search, so small searches find far more.</p>
-        <span class="out"><b>268</b>businesses · $0.07</span>
+        <div class="head"><h3>2 · Search Google Maps</h3><span class="tag">Modal · $0.07</span></div>
+        <div class="viz"><div class="cells" aria-label="20 postcodes, 12 searched at the same time"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div><span class="vizcap">one search per postcode,<br>12 at once</span></div>
+        <span class="out"><b>268</b>businesses</span>
       </article>
       <article class="step laptop" style="grid-column:6 / span 3;grid-row:2" data-i="3">
-        <span class="no">3 · <span class="who">laptop</span></span>
-        <h3>Read websites, filter</h3>
-        <p>Opens each website and finds Instagram, Facebook and the owner's name. Keeps a business only if it fits your niche, has 5+ reviews and an Instagram or Facebook.</p>
-        <span class="out"><b>44</b>of 268 kept · free</span>
+        <div class="head"><h3>3 · Read websites</h3><span class="tag">free</span></div>
+        <div class="viz"><div class="chain"><svg class="ico" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3.2 3 14.8 0 18M12 3c-3 3.2-3 14.8 0 18"/></svg><span class="arrow">→</span><svg class="ico" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r="1" class="dot"/></svg><svg class="ico" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><path d="M13.5 20v-7h2.3l.4-2.6h-2.7V8.8c0-.8.3-1.3 1.4-1.3h1.4V5.2c-.3 0-1.1-.1-2-.1-2 0-3.3 1.2-3.3 3.4v1.9H8.7V13H11v7"/></svg><svg class="ico" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c1-4.5 4.2-6.5 8-6.5s7 2 8 6.5"/></svg></div><span class="vizcap">keeps your niche, 5+ reviews</span></div>
+        <span class="out"><b>44</b>leads</span>
       </article>
       <article class="step cloud" style="grid-column:8 / span 3;grid-row:3" data-i="4">
-        <span class="no">4 · <span class="who">Apify, optional</span></span>
-        <h3>Check their Instagram and Facebook</h3>
-        <p>Apify can read Instagram and Facebook, which block normal scripts. Drops businesses with no post in six months. Skip it and all 44 go on.</p>
-        <span class="out"><b>29</b>active · $0.19</span>
+        <div class="head"><h3>4 · Still posting?</h3><span class="tag">Apify · $0.19</span></div>
+        <div class="viz"><ul class="profiles"><li><svg class="ico" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r="1" class="dot"/></svg><span>posted 3 days ago</span><b class="ok">✓</b></li><li><svg class="ico" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><path d="M13.5 20v-7h2.3l.4-2.6h-2.7V8.8c0-.8.3-1.3 1.4-1.3h1.4V5.2c-.3 0-1.1-.1-2-.1-2 0-3.3 1.2-3.3 3.4v1.9H8.7V13H11v7"/></svg><span>posted 2 weeks ago</span><b class="ok">✓</b></li><li class="dead"><svg class="ico" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r="1" class="dot"/></svg><span>silent 9 months</span><b>✕</b></li></ul></div>
+        <span class="out"><b>29</b>active <em>optional step</em></span>
       </article>
       <article class="step laptop" style="grid-column:10 / span 3;grid-row:2" data-i="5">
-        <span class="no">5 · <span class="who">laptop</span></span>
-        <h3>Fill the outreach table</h3>
-        <p>A table in your browser, running on your laptop. Each lead gets a strategy and a message; Claude drafts the openers.</p>
+        <div class="head"><h3>5 · Outreach table</h3><span class="tag">free</span></div>
+        <div class="viz"><div class="tbl"><div><i></i><i class="w"></i><span>Copy</span></div><div><i></i><i class="w"></i><span>Copy</span></div><div><i></i><i class="w"></i><span>Copy</span></div></div></div>
         <span class="out"><b>29</b>messages ready</span>
       </article>
       <article class="step you" style="grid-column:12 / span 3;grid-row:1" data-i="6">
-        <span class="no">6 · <span class="who">you</span></span>
-        <h3>Send by hand</h3>
-        <p>Nothing is sent for you. Click, the profile opens and the message is copied. Paste, send, tick.</p>
-        <span class="out"><b>30</b>a day max per account</span>
+        <div class="head"><h3>6 · Send by hand</h3></div>
+        <div class="viz"><div class="bubble">Hi, do you also cover <mark>Headingley</mark>?</div><span class="vizcap">copy · paste · send · tick</span></div>
+        <span class="out"><b>30</b>a day max</span>
       </article>
       <svg aria-hidden="true"><defs><marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#3d3d3a" stroke="none"/></marker></defs><g id="links"></g></svg>
     </div>
