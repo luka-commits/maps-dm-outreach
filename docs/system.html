@@ -137,8 +137,29 @@ td.n { white-space: nowrap; color: var(--ink); font-variant-numeric: tabular-num
 .strat p { font-size: 14px; margin: 0; }
 .honest { font-size: 14px; color: var(--ink-2); background: var(--surface-2); border-radius: 10px; padding: 10px 14px; margin: 14px 0 0; }
 
+.split { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 10px; margin-top: 14px; font-size: 14px; }
+.split .pick { font-weight: 600; color: var(--ink); }
+.split .arrow { color: var(--muted); }
+.split .bar { display: flex; flex: 1 1 280px; max-width: 460px; border-radius: 8px; overflow: hidden; font-size: 13px; font-weight: 600; }
+.split .bar span { flex: 1; padding: 6px 10px; }
+.split .a { background: var(--ink); color: #faf9f5; } .split .b { background: var(--line-2); color: var(--ink); }
+.key { display: flex; flex-wrap: wrap; gap: 4px 20px; margin-top: 10px; font-size: 13px; }
+mark.op, .dm mark.op { background: none; color: var(--ink); border-bottom: 2px dotted var(--accent); border-radius: 0; padding: 0; }
+.key mark { background: var(--accent-tint); color: var(--accent-text); border-radius: 3px; padding: 0 3px; font-weight: 600; }
+.key mark.op { font-weight: 600; margin-right: 2px; }
+.strat p { color: var(--muted); font-size: 13px; }
+.start h3 small { font-weight: 400; color: var(--muted); font-size: 13px; margin-left: 6px; }
+.chain2 { list-style: none; padding: 0 !important; margin: 0; display: flex; flex-wrap: wrap; align-items: center; gap: 6px 4px; }
+.chain2 li { margin: 0 !important; font-size: 13px; background: var(--surface-2); border: 1px solid var(--line); border-radius: 999px; padding: 3px 9px; color: var(--ink-2); }
+.chain2 li { position: relative; }
+.chain2 li + li { margin-left: 16px !important; }
+.chain2 li + li::before { content: "→"; color: var(--muted); position: absolute; left: -14px; top: 50%; transform: translateY(-52%); }
+.chain2 li.you { background: var(--you); border-color: #e3cbbb; }
+.chain2 li.opt { border-style: dashed; }
+.chain2 small { color: var(--muted); font-size: 12px; }
+.dotyou { display: inline-block; width: 12px; height: 12px; border-radius: 4px; background: var(--you); border: 1px solid #e3cbbb; vertical-align: -1px; margin-right: 4px; }
 /* Start */
-.start { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 16px; }
+.start { display: grid; grid-template-columns: 1fr; gap: 12px; margin-top: 16px; }
 .start > div { padding: 18px 20px; }
 .start h3 { font: 600 16px var(--sans); color: var(--ink); margin-bottom: 10px; }
 .start ol { margin: 0; padding-left: 20px; }
@@ -242,9 +263,9 @@ td.n { white-space: nowrap; color: var(--ink); font-variant-numeric: tabular-num
   <section aria-labelledby="h-cost">
     <h2 id="h-cost">What it costs</h2>
     <div class="money">
-      <div class="card"><b>$0.26</b><span>the test run above, 20 postcodes, everything included</span></div>
-      <div class="card"><b>under $3</b><span>a whole county (80 to 300 postcodes): West Yorkshire about $0.75, Greater London about $2.50</span></div>
-      <div class="card"><b>$0 to start</b><span>free monthly credit: Modal $30, Apify $5. <b>Plus your Claude Code plan.</b></span></div>
+      <div class="card"><b>$0.26</b><span>the test run above</span></div>
+      <div class="card"><b>under $3</b><span>a whole county · West Yorkshire $0.75 · London $2.50</span></div>
+      <div class="card"><b>$0 to start</b><span>free monthly credit · Modal $30 · Apify $5 · plus your Claude Code plan</span></div>
     </div>
     <details>
       <summary>Rates and a calculator for your area</summary>
@@ -277,58 +298,58 @@ td.n { white-space: nowrap; color: var(--ink); font-variant-numeric: tabular-num
 
   <section aria-labelledby="h-strat">
     <h2 id="h-strat">Four DM strategies</h2>
-    <p class="sub">You pick two; the table splits your leads between them and counts the replies. An <b>opener</b> is one line about the business's latest Instagram post, drafted by Claude and checked by you. Highlighted parts are filled in per business.</p>
+    <div class="split" aria-label="You pick two strategies; the table splits your leads between them and counts replies">
+      <span class="pick">pick 2</span><span class="arrow">→</span>
+      <div class="bar"><span class="a">A · half your leads</span><span class="b">B · other half</span></div>
+      <span class="arrow">→</span><span class="pick">replies counted</span>
+    </div>
+    <div class="key"><span><mark class="op">opener</mark> one line on their latest post, Claude drafts, you check</span><span><mark>fill-in</mark> per business</span></div>
     <div class="strats">
       <article class="strat card">
         <h3>1 · Area question</h3><span class="ch">every channel</span>
         <div class="dm">Hi, do you also cover <mark>Headingley</mark>?</div>
-        <p>A short, easy question to answer. Your offer comes in message two.</p>
+        <p>offer comes in message two</p>
       </article>
       <article class="strat card">
-        <h3>2 · Work done upfront</h3><span class="ch">Instagram, with opener</span>
-        <div class="dm">Hey <mark>Sam</mark>, <mark>loved the chapel roof in your last post</mark>. I've already improved your Google profile so you can overtake <mark>Northside Roofing</mark>. Want it?</div>
-        <p>You do a piece of your own service first. The competitor named is the top-rated one in their town.</p>
+        <h3>2 · Work done upfront</h3><span class="ch">Instagram</span>
+        <div class="dm">Hey <mark>Sam</mark>, <mark class="op">loved the chapel roof in your last post</mark>. I've already improved your Google profile so you can overtake <mark>Northside Roofing</mark>. Want it?</div>
+        <p>you've done the work already</p>
       </article>
       <article class="strat card">
-        <h3>3 · Ask first</h3><span class="ch">Instagram, with opener</span>
-        <div class="dm"><mark>that chapel roof came out lovely</mark> had a look at your google listing, want the two things i'd change?</div>
-        <p>The tips go only to people who say yes.</p>
+        <h3>3 · Ask first</h3><span class="ch">Instagram</span>
+        <div class="dm"><mark class="op">that chapel roof came out lovely</mark> had a look at your google listing, want the two things i'd change?</div>
+        <p>tips only after a yes</p>
       </article>
       <article class="strat card">
-        <h3>4 · Bigger free offer</h3><span class="ch">Instagram, with opener</span>
-        <div class="dm"><mark>that chapel roof came out lovely</mark> i help <mark>roofers</mark> get found online. cool if i send you some fixes upfront?</div>
-        <p>Like 3, but offers more. Shows whether curiosity or free work wins.</p>
+        <h3>4 · Bigger free offer</h3><span class="ch">Instagram</span>
+        <div class="dm"><mark class="op">that chapel roof came out lovely</mark> i help <mark>roofers</mark> get found online. cool if i send you some fixes upfront?</div>
+        <p>more on the table than 3</p>
       </article>
     </div>
-    <p class="honest"><b>No reply rates yet.</b> The kit measures yours per strategy; below about 30 sends each, a difference is mostly chance. Your service and promise go in during setup. Examples are shortened; full templates are in <code>strategies/</code>.</p>
+    <p class="honest"><b>No reply rates yet:</b> the table measures yours. Full templates in <code>strategies/</code>.</p>
   </section>
 
   <section aria-labelledby="h-start">
     <h2 id="h-start">Start</h2>
     <div class="start">
       <div class="card">
-        <h3>Setup, about 20 minutes</h3>
-        <ol>
-          <li>Download the repo, open it in Claude Code, say <b>“set up”</b>.</li>
-          <li>Claude installs the rest and checks each step.</li>
-          <li><b>You:</b> create a free Modal account and log in once.</li>
-          <li><b>You, optional:</b> paste an Apify key.</li>
-          <li>Claude asks your name, offer and two strategies, then runs a test for under $0.30.</li>
+        <h3>Setup <small>about 20 min</small></h3>
+        <ol class="chain2">
+          <li>Download</li><li><b>“set up”</b> in Claude Code</li><li class="you">Modal login</li><li class="you opt">Apify key <small>optional</small></li><li>Test run <small>&lt; $0.30</small></li>
         </ol>
+        <p class="small"><span class="dotyou"></span>= you, in the browser. Claude does the rest.</p>
       </div>
       <div class="card">
         <h3>Every day</h3>
-        <ol>
-          <li>Pull 10 to 20 leads. Claude drafts the openers; you check them.</li>
-          <li>Send them by hand and tick each one.</li>
-          <li>Mark who replied. The table compares the two strategies.</li>
+        <ol class="chain2">
+          <li>Pull 10–20 leads</li><li>Check openers</li><li class="you">Send by hand, tick</li><li class="you">Mark replies</li>
         </ol>
         <div class="caps"><span><b>30</b>Instagram</span><span><b>15</b>Facebook</span><span><b>20</b>LinkedIn</span></div>
-        <p class="small">Default daily limit per account: cautious defaults, not official numbers. Start lower on a new account and follow each platform's rules. LinkedIn works if you paste a profile link yourself.</p>
+        <p class="small">daily limit per account, cautious defaults</p>
       </div>
     </div>
     <div class="shots">
-      <figure><a href="screenshots/table.png"><img src="screenshots/table.png" alt="The full outreach table with filters, daily counters and one row per business."></a><figcaption>The real table (demo data). Click to enlarge.</figcaption></figure>
+      <figure><a href="screenshots/table.png"><img src="screenshots/table.png" alt="The full outreach table with filters, daily counters and one row per business."></a><figcaption>The table (demo data)</figcaption></figure>
       <figure><a href="screenshots/drawer.png"><img src="screenshots/drawer.png" alt="The lead drawer with business details, strategy picker, message and opener field."></a><figcaption>One business, opened</figcaption></figure>
       <figure><a href="screenshots/analytics.png"><img src="screenshots/analytics.png" alt="Analytics with reply rates per strategy and channel."></a><figcaption>Replies per strategy</figcaption></figure>
     </div>
